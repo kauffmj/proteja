@@ -1,0 +1,33 @@
+<protect.Settings>
+  <testClasses>
+    <java-class>org.joda.time.DateMidnightTest</java-class>
+    <java-class>org.joda.time.DateTimeComparatorTest</java-class>
+    <java-class>org.joda.time.DateTimeTest</java-class>
+    <java-class>org.joda.time.DaysTest</java-class>
+    <java-class>org.joda.time.HoursTest</java-class>
+    <java-class>org.joda.time.IllegalFieldValueExceptionTest</java-class>
+    <java-class>org.joda.time.InstantTest</java-class>
+    <java-class>org.joda.time.LocalDateTest</java-class>
+    <java-class>org.joda.time.LocalTimeTest</java-class>
+    <java-class>org.joda.time.MinutesTest</java-class>
+    <java-class>org.joda.time.MonthsTest</java-class>
+    <java-class>org.joda.time.MutableDateTimeTest</java-class>
+    <java-class>org.joda.time.MutableIntervalTest</java-class>
+    <java-class>org.joda.time.MutablePeriodTest</java-class>
+    <java-class>org.joda.time.PartialTest</java-class>
+    <java-class>org.joda.time.PeriodTest</java-class>
+    <java-class>org.joda.time.SecondsTest</java-class>
+    <java-class>org.joda.time.TimeOfDayTest</java-class>
+    <java-class>org.joda.time.WeeksTest</java-class>
+    <java-class>org.joda.time.YearMonthDayTest</java-class>
+    <java-class>org.joda.time.field.DelegatedDateTimeFieldTest</java-class>
+    <java-class>org.joda.time.field.LenientDateTimeFieldTest</java-class>
+    <java-class>org.joda.time.format.DateTimeFormatterTest</java-class>
+    <java-class>org.joda.time.tz.CachedDateTimeZoneTest</java-class>
+    <java-class>org.joda.time.tz.DateTimeZoneBuilderTest</java-class>
+  </testClasses>
+  <batchFactor>1</batchFactor>
+  <resetJVMOnBatch>true</resetJVMOnBatch>
+  <coverageType>line</coverageType>
+  <listType>ignore</listType>
+</protect.Settings>

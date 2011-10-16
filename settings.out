@@ -1,0 +1,15 @@
+<proteja.Settings>
+  <testClasses>
+    <java-class>proteja.Setup</java-class>
+  </testClasses>
+  <batchFactor>1</batchFactor>
+  <resetJVMOnBatch>true</resetJVMOnBatch>
+  <coverageType>line</coverageType>
+  <listType>include</listType>
+  <methodList>
+    <proteja.PMethod>
+      <clazz>proteja.PMethod</clazz>
+      <methodName></methodName>
+    </proteja.PMethod>
+  </methodList>
+</proteja.Settings>

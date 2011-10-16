@@ -1,0 +1,221 @@
+<!-- Specifies tasks that may need to be performed when using proteja.
+  
+    Jonathan Miller Kauffman -->
+
+<project name="proteja" basedir=".">
+
+     <!-- The locations of the program source code, program bytecode, and test suite bytecode.  If you want to 
+	  change these locations, modify these properties in 'proteja.xml' and set them on the command line when
+	  running the proteja ant task. -->
+     <property name="userSource" value="apps/SK/src/sudoku/" />
+     <property name="userBytecode" value="apps/SK/bin/" />
+     <property name="testSuite" value="apps/SK/bin/" />
+
+     <property name="src" value="src/"/>
+     <property name="build" value="build/classes/"/>
+
+     <!-- Cobertura will not run unless the argument '-Dcobertura=true' is supplied on the command-line. -->
+     <property name="cobertura" value="false" />
+     <!-- Per-test case timing information will not be captured unless '-DtestTimer=true' is supplied on the command-line. -->
+     <property name="testTimer" value="false" />
+     <!-- The name of the application being run. -->
+     <property name="applicationName" value="default" />
+     <!-- The name of the file holding a list of test cases to run. -->
+     <property name="modificationFile" value="data.dat" />
+
+     <!-- Classpath setting needed to run proteja in any configuration. -->
+     <property name="classpath" value="./build/classes/:./${testSuite}:./${userBytecode}:./lib/junit-4.6.jar:./lib/ant.jar:./lib/ant-launcher.jar:./lib/asm-3.0.jar:./lib/asm-tree-3.0.jar:./lib/cobertura.jar:./lib/commons-beanutils-1.8.0.jar:./lib/commons-digester-2.0.jar:./lib/commons-logging-1.1.1.jar:./lib/jakarta-oro-2.0.8.jar:./lib/log4j-1.2.9.jar:./lib/xpp3-1.1.3.4d_b4_min.jar:./lib/xstream-1.1.3.jar:." />
+
+     <!-- Runs proteja with the cobertura and testTimer commmand-line args. -->
+     <target name="proteja">
+	  <java classname="proteja.TestProcessor" fork="true">
+		<arg value="${cobertura}" />
+		<arg value="${testTimer}" />
+		<arg value="${applicationName}" />
+		<classpath>
+			<pathelement path="${classpath}"></pathelement>
+		</classpath>
+	  </java> 
+     </target>
+
+     <!-- Uses AnnotationAdder to add annotations to all the classes specified in settings.out -->
+     <target name="addAnnotations">
+          <java classname="proteja.ReadClassesAddAnnotations" fork="true">
+	       <arg value="${testSuite}" />
+	       <!--<arg value="${classpath}" />-->
+               <classpath>
+                    <pathelement path="${classpath}"></pathelement>
+               </classpath>
+          </java>
+     </target>
+
+     <!-- Creates a new settings file if the old one has been damaged or destroyed. -->
+     <target name="createSettings">
+          <java classname="proteja.CreateSettings" fork="true">
+               <classpath>
+                    <pathelement path="${classpath}"></pathelement>
+               </classpath>
+          </java>
+          <echo>"Settings created."</echo>
+     </target>
+
+     <!-- Modifies the settings.out file based on a reduction/prioritization. -->
+     <target name="modifyTestSuite">
+          <java classname="proteja.ModifyTestSuite" fork="true">
+               <arg value="${modificationFile}" />
+               <classpath>
+                    <pathelement path="${classpath}"></pathelement>
+               </classpath>
+          </java>
+     </target>
+
+    <target name="build">
+        <javac srcdir="src" destdir="${build}">
+               <classpath>
+                    <pathelement path="${classpath}"></pathelement>
+               </classpath>
+        </javac>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build}"/>
+    </target>
+
+    <target name="init">
+        <tstamp/>
+        <mkdir dir="${build}"/>
+    </target>
+
+    <!-- properties for test JVM (for this to work you need to un-comment the jvmarg tag in the run target.)-->
+    <property name="properties" value="-Xmx9m" />
+
+    <!-- variables (please do not modify)-->
+    <property name="groupNumber" value="default" />
+    <property name="numberOfGroups" value="default" />
+    <property name="booleanCobertura" value="default" />
+
+    <!-- define paths -->
+    <property name="instCode" location="instrumentedClasses" />
+    <property name="proteja" location="build/classes" />
+    <property name="junit" location="lib/junit-4.6.jar:." />
+    <property name="xstream" location="lib/xstream-1.1.3.jar:lib/xpp3-1.1.3.4d_b4_min.jar:." />
+    <property name="lib" location="lib/" />
+    <property name="digester" location="lib/commons-digester-2.0.jar" />
+    <property name="beanutils" location="lib/commons-beanutils-1.8.0.jar" />
+    <property name="logging" location="lib/commons-logging-1.1.1.jar" />
+    <property name="log4j" location="lib/log4j-1.2.9.jar" />
+    <property name="cobertura" location="lib/cobertura.jar" />
+
+
+    <!-- set classpath -->
+    <path id="run.classpath">
+      <pathelement path="${instCode}" />
+      <pathelement path="${junit}" />
+      <pathelement path="${xstream}" />
+      <pathelement path="${proteja}" />
+      <pathelement path="${testSuite}" />
+      <pathelement path="${digester}" />
+      <pathelement path="${logging}" />
+      <pathelement path="${beanutils}" />
+      <pathelement path="${log4j}" />
+      <pathelement path="${testSuite}" />
+      <pathelement path="${cobertura}" />
+      <pathelement path="${userBytecode}" />
+    </path>
+
+    <!-- targets -->
+    <target name="run" >
+      <java classname="proteja.InstructionReader" fork="yes" >
+        <arg value="${booleanCobertura}" />
+        <arg value="${testTimer}" />
+        <arg value="${batchFactor}" />
+        <arg value="${coverageType}" />
+        <arg value="${resetJVMOnBatch}" />
+        <arg value="${applicationName}" />
+        <classpath refid="run.classpath" />
+    <!--
+         <jvmarg value="${properties}" />
+    -->
+      </java>
+    </target>
+
+    <!-- Cobertura Targets -->
+
+    <!-- Setting Classpath for Cobertura  -->
+
+    <path id="cobertura.classpath">
+        <fileset dir="${lib}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+
+    <!-- importing cobertura -->
+
+    <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
+
+    <target name="inst" description="Instruments the .class Files">
+      <mkdir dir="instrumentedClasses"/>
+      <cobertura-instrument todir="instrumentedClasses">
+        <fileset dir="${userBytecode}">
+          <include name="**/*.class"/>
+          <include name="**/*.jar" />
+          <exclude name="**/*Test.class" />
+        </fileset>
+      </cobertura-instrument>
+    </target>
+
+
+    <target name="coberturaFileManip">
+      <move file="cobertura.ser" tofile="${groupNumber}.ser" />
+      <move file="${groupNumber}.ser" todir="temp" />
+    </target>
+
+    <target name="coberturaReportGeneration">
+      <mkdir dir="coverageReports" />
+      <cobertura-report format="xml" datafile="temp/${groupNumber}.ser" destdir="coverageReports/" >
+        <fileset dir="${userSource}">
+          <include name="**/*.java" />
+        </fileset>
+        <classpath refid="cobertura.classpath" />
+      </cobertura-report>
+      <move file="coverageReports/coverage.xml" tofile="coverageReports/${groupNumber}.xml" />
+    </target>
+
+    <target name="createCopy" >
+      <mkdir dir="temp" />
+      <copy file="cobertura.ser" todir="temp" />
+    </target>
+
+    <target name="moveToHome" >
+      <copy file="temp/cobertura.ser" todir="."/>
+    </target>
+
+    <target name="coberturaReportParser">
+        <java classname="coberturaParsing.XmlParser" >
+         <arg value="coverageReports/${groupNumber}" />
+         <arg value="rules.xml" />
+         <arg value="${numberOfGroups}" />
+         <classpath refid="run.classpath" />
+      </java>
+    </target>
+
+    <target name="cleanup">
+      <delete dir="temp" />
+      <delete dir="instrumentedClasses" />
+      <delete file="cobertura.ser" />
+      <delete file="instructions.out" />
+    </target>
+
+    <target name="constructMatrix" >
+      <java classname="coberturaParsing.ConstructMatrix">
+        <arg value="${numberOfGroups}" />
+        <arg value="${batchFactor}" />
+        <arg value="${coverageType}" />
+        <arg value="${resetJVMOnBatch}" />
+        <arg value="${applicationName}" />
+        <classpath refid="run.classpath" />
+      </java>
+    </target>
+
+</project>

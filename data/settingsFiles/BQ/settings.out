@@ -1,0 +1,28 @@
+<protect.Settings>
+  <testClasses>
+
+    <java-class>net.sourceforge.barbecue.linear.code39.Code39BarcodeTest</java-class>
+    <java-class>net.sourceforge.barbecue.BarcodeTest</java-class>
+    <java-class>net.sourceforge.barbecue.linear.ean.UCCEAN128BarcodeTest</java-class>
+    <java-class>net.sourceforge.barbecue.BlankModuleTest</java-class>
+    <java-class>net.sourceforge.barbecue.linear.LinearBarcodeTest</java-class>
+    <java-class>net.sourceforge.barbecue.CompositeModuleTest</java-class>
+    <java-class>net.sourceforge.barbecue.linear.twoOfFive.Int2of5BarcodeTest</java-class>
+    <java-class>net.sourceforge.barbecue.env.DefaultEnvironmentTest</java-class>
+    <java-class>net.sourceforge.barbecue.linear.twoOfFive.Std2of5BarcodeTest</java-class>
+    <java-class>net.sourceforge.barbecue.env.EnvironmentFactoryTest</java-class>
+    <java-class>net.sourceforge.barbecue.env.HeadlessEnvironmentTest</java-class>
+    <java-class>net.sourceforge.barbecue.ModuleTest</java-class>
+    <java-class>net.sourceforge.barbecue.env.NonAWTEnvironmentTest</java-class>
+    <java-class>net.sourceforge.barbecue.Modulo10Test</java-class>
+    <java-class>net.sourceforge.barbecue.linear.codabar.CodabarBarcodeTest</java-class>
+    <java-class>net.sourceforge.barbecue.output.GraphicsOutputTest</java-class>
+    <java-class>net.sourceforge.barbecue.linear.code128.Code128BarcodeTest</java-class>
+    <java-class>net.sourceforge.barbecue.linear.code128.ModuleFactoryTest</java-class>
+    <java-class>net.sourceforge.barbecue.SeparatorModuleTest</java-class>
+  </testClasses>
+  <batchFactor>1</batchFactor>
+  <resetJVMOnBatch>true</resetJVMOnBatch>
+  <coverageType>line</coverageType>
+  <listType>ignore</listType>
+</protect.Settings>

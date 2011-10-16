@@ -1,0 +1,6 @@
+Sudoku Readme
+
+In order to prepare Sudoku for use with Proteja, run the following commands:
+
+ant init
+ant compile

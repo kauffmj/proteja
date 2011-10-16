@@ -1,0 +1,20 @@
+<protect.Settings>
+  <testClasses>
+    <java-class>dataStructures.TestIdentifier</java-class>
+    <java-class>dataStructures.TestIdentifierTable</java-class>
+    <java-class>dataStructures.Teststack1</java-class>
+    <java-class>dataStructures.Teststack1oldMethod</java-class>
+    <java-class>dataStructures.Teststack2oldMethod</java-class>
+    <java-class>dataStructures.Teststack3</java-class>
+    <java-class>dataStructures.Teststack3oldMethod</java-class>
+    <java-class>dataStructures.Teststack4</java-class>
+    <java-class>dataStructures.Teststack4oldMethod</java-class>
+    <java-class>dataStructures.TestStack2</java-class>
+    <java-class>dataStructures.uniqueBoundedStackAxiomTest</java-class>
+    <java-class>dataStructures.uniqueBoundedStackTest</java-class>
+  </testClasses>
+  <batchFactor>1</batchFactor>
+  <resetJVMOnBatch>true</resetJVMOnBatch>
+  <coverageType>line</coverageType>
+  <listType>ignore</listType>
+</protect.Settings>

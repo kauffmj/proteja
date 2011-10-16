@@ -1,0 +1,6 @@
+ReductionAndPrioritization Readme
+
+In order to prepare ReductionAndPrioritization for use with Proteja, run the following commands:
+
+ant init
+ant compile

@@ -1,0 +1,319 @@
+################################################################################
+#
+# Proteja - Test Suite Management Tool
+#
+# Original Author: Erik Ostrofsky
+#
+# Current Maintainer: Jonathan Miller Kauffman (kauffmj@gmail.com)
+#
+################################################################################
+
+
+INTRODUCTION
+
+Proteja is intended to be a comprehensive test suite management tool.  It allows
+you to collect coverage information at the line, method, and class levels of
+granularity for Java programs.  Proteja also allows you to control the
+granularity of coverage reporting (e.g., per-test case vs. entire test suite).
+The format of these coverage reports is a binary matrix that can be used as
+input to test suite reduction and prioritization techniques.  Proteja will
+accept a file describing the modifications to the test suite in order to run
+a reduced or prioritized test suite.  More details about configuring and using
+Proteja can be found in the following sections.
+
+
+DOWNLOAD
+
+The Proteja system can be downloaded from
+
+proteja.googlecode.com
+
+Of course, if you are reading this README file, then you have most likely
+already downloaded this tool.
+
+
+BUILDING PROTEJA
+
+Next, change into the directory where you downloaded Proteja.  You should see
+a build.xml file as well as some additional files and directories.  In order
+to build the system, first type
+
+ant init
+
+in order to create the "build" directory that will store the bytecode for this
+system.  Then type
+
+ant build
+
+in order to compile all of the source code.  If for some reason you wish to
+perform a clean build of Proteja, run
+
+ant clean
+
+in order to delete the build directory and its contents.
+
+
+CONFIGURATION
+
+Proteja uses two configuration files: build.xml and settings.out.  Information
+about how to modify these files is discussed next.
+
+1) settings.out
+
+This is an XML file that represents an object of the Java class called Settings.
+Each field in this object represents an input parameter to Proteja.  Each
+parameter will be discussed separately.
+
+a) testClasses - This is a list of the JUnit classes used to test your program.
+                 Each test class should be preceded by <java-class> and followed
+                 by </java-class>.  Be sure to include the project name; for
+                 example, if your test class is "ExampleTest" and the project
+                 name is "fake.test", you should type
+
+                     <java-class>fake.test.ExampleTest</java-class>
+                 
+                 within the testClasses tag.
+
+b) batchFactor - This parameter controls how often coverage information should
+                 be stored.  For example, if the batch factor is set to 1, then
+                 coverage information will be collected for each individual
+                 test case.  The batch factor can be set to any integer in the
+                 range [1,n], where n is the total number of test cases in your
+                 test suite.
+
+c) resetJVMOnBatch - This parameter must be set to "true" in order for the
+                     batch factor to be meaningful.  If it is set to "false",
+                     then Proteja will collect coverage information for the
+                     entire test suite, even if batchFactor is set to something
+                     less than n.
+
+d) coverageType - This controls the granularity of the coverage information
+                  collected.  The three options are "line", "method", and
+                  "class".  If coverageType is set to "line", then Proteja will
+                  collect coverage information for each statement in the
+                  program.  If "method" is used, then Proteja will collect
+                  coverage information for each method.  Finally, when
+                  coverageType is set to "class", Proteja will collect coverage
+                  information for each Java class.
+
+d) listType - This controls which test cases in the test suite are executed.
+              The three options are "include", "exclude", and "ignore".  If it
+              is set to "include", then only the test cases in methodList are
+              run in the order in which they are listed. When listType is
+              set to "exclude", all test cases are run except for those listed
+              in methodList.  When listType is set to "ignore", the list is
+              ignored and Proteja runs all test cases.
+
+e) methodList - This is a list of test cases in your test suite.  How this list
+                is treated depends on the value of listType.  Each method is
+                formatted like
+
+                    <proteja.PMethod>
+                      <clazz>fake.test.ExampleTest</clazz>
+                      <methodName>testFake</methodName>
+                    </proteja.PMethod>
+
+                where the project is "fake.test", the test class is
+                "ExampleTest", and the test case is "testFake".
+
+The settings.out file is essential for running Proteja.  Use great care when you
+are making changes to this file.  If you corrupt or delete settings.out, then
+you can create a new file by typing
+
+ant createSettings
+
+while in the main directory of Proteja.  Since this task is configured to create
+a settings.out file that does not run any test suite, you will need to modify
+the new file to work with your application.
+
+2) build.xml
+
+This file contains seven properties of interest, located near the top of the
+file.  Please note that for the first three properties, the pathname must be
+relative to the base directory of Proteja.  For example, if you installed
+Proteja in the "/tools/proteja/" directory and the application that you wish
+to test is located in the "/apps/foo/" directory, each of the first three
+properties must begin with "../../apps/foo/".
+
+a) userSource - This is the location of the source code of the program being
+                tested.  Cobertura uses this information when generating
+                coverage reports in order to map line numbers to actual lines
+                in the program.
+
+b) userBytecode - The location of the bytecode for the program being tested.
+                  Cobertura instruments these classes in order to determine
+                  which parts of the program are executed by a test case.
+
+c) testSuite - The locations of the bytecode for your test suite.  Proteja
+               runs the test suite and uses Cobertura in order to determine
+               which parts of the program the test suite executes.
+
+d) cobertura - If set to "true", Proteja will run Cobertura and collect coverage
+               information while running the test suite.
+
+e) testTimer - If set to "true", a test case timings file will be generated.
+               This file contains the time for each test case to execute,
+               whether that test passed or failed, and information about how
+               Proteja was configured when that test case was run.
+
+f) applicationName - This is the name of the application being run in Proteja.
+                     By default, the application name is set to "default".
+                     The name of the application is used in the filenames of
+                     the coverage report and the timings file.
+
+g) modificationFile - The name of the file that contains a list of test cases.
+                      This list is used by the modifyTestSuite task in order
+                      to create a reduced or prioritized test suite.  By default
+                      this property is set to "data.dat".
+
+The build.xml file also contains several ant tasks that are not discussed in
+this tutorial.  Please note that you should not actually run these tasks
+directly, as they are used by Proteja for collecting coverage information and
+generating reports, and will likely yield confusing results when used out of
+context.
+
+All of the properties in build.xml can be set via the command line.  For
+example, in order to set userSource through the command line, type
+
+ant proteja -DuserSource=desiredPath
+
+where "desiredPath" is the desired setting of this property.  If you will be
+executing the test suite frequently, then it is probably best to make a copy of
+this file, as well as the settings.out file, that contains the settings for that
+particular application.
+
+Once the build.xml and settings.out files are properly configured, you are
+ready to use Proteja.
+
+COLLECTING COVERAGE INFORMATION
+
+Before running a test suite in Proteja, all of your test classes must contain
+standard JUnit annotations (@Before, @After, and @Test).  If your classes are
+missing these annotations, then they can be automatically added to the bytecode
+of your test classes using the command
+
+ant addAnnotations
+
+Now you are ready to run Proteja.  In order to run a test suite without
+collecting coverage information, type
+
+ant proteja
+
+while in the main directory of Proteja.  In order to set the name of the
+application, include the argument
+
+-DapplicationName=appName
+
+where "appName" is the application name.  If you want to produce a per-test case
+timings file, then include the argument
+
+-DtestTimer=true
+
+This will produce a file called
+
+appName_Timing.dat
+
+in the main directory of Proteja.  Each row of this file contains the following
+information:
+
+1) test case name
+2) execution time in nanoseconds
+3) batchFactor
+4) coverageType
+5) resetJVMOnBatch
+6) applicationName
+7) pass/fail information (false if passed, true if failed)
+
+In order to collect coverage information and produce a coverage report, include
+the argument
+
+-Dcobertura=true
+
+A coverage report will be saved in the "coverageReports" directory.  The name
+will be in the format
+
+appName_batchFactor_coverageType_resetJVMOnBatch_Coverage.dat
+
+The contents of this file is a binary coverage matrix.  Rows represent
+requirements (lines, methods, or classes) and columns represent test cases
+(individual test cases or batches of test cases).  A 1 in column i row j means
+that test case i covers requirement j.  A 0 means that test case i does not
+cover requirement j.  There is also a summary row and a summary column that
+contains the total number of 1's in each row and column, respectively.
+
+
+REDUCING AND PRIORITIZING A TEST SUITE
+
+Once you have a timings file and a coverage report, you are ready to perform
+test suite reduction and prioritization.  Proteja does not give you the ability
+to perform these tasks; however, the Modificare framework does.  See
+
+modificare.googlecode.com
+
+for information on how to download and use this tool.
+
+
+RUNNING A REDUCED OR PRIORITIZED TEST SUITE
+
+In order to run a reduced or prioritized test suite in Proteja, you must first
+create a file that contains the full name of each test case to be run on a
+separate line. Then, in order to perform the reduction or prioritization, type
+
+ant modifyTestSuite -DmodificationFile=fileName
+
+This will modify the methodList in the settings.out file to contain the test
+cases in "fileName" in the order in which they are listed.  You can then run the
+test suite by typing
+
+ant proteja [options]
+
+
+CONCRETE EXAMPLE
+
+Several applications are included with the Proteja download.  They are located
+in the "apps" directory.  This section walks you through the use of one of these
+applications, Sudoku.
+
+First, you need to compile the Sudoku project.  Change into the Sudoku project
+directory which, relative to the base directory of Proteja, is "apps/SK".  In
+order to build the project, first type
+
+ant init
+
+which creates the "bin" directory that will hold this project's bytecodes.
+Then type
+
+ant compile
+
+in order to compile all of the source code into bytecode.  For Sudoku and all
+of the other applications, a listing of the commands needed to compile the
+source code is provided in a README file.
+
+Second, you need to modify the build.xml and settings.out files.  These files
+have already been pre-configured for all of the applications provided with
+Proteja.  They are located in the "data/settingsFiles" directory, with a
+subdirectory for each application.  Copy these files into the base directory
+of Proteja.
+
+You are now ready to run Proteja.  Before doing so, you need to add JUnit
+annotations to the test classes by running
+
+ant addAnnotations
+
+while in the base directory of Proteja.  Then, in order to produce a test case
+timings file and a coverage matrix for the Sudoku project, type
+
+ant proteja -DtestTimer=true -Dcobertura=true -DapplicationName=Sudoku
+
+Please be patient, as this is a time-consuming process.  After this task is
+completed, you can view the "Sudoku_Timing.dat" and
+"coverageReports/Sudoku_1_line_true_Coverage.dat" files in order to learn
+more about the relationship between the Sudoku application and its test suite.
+
+
+QUESTIONS OR COMMENTS?
+
+If you have questions or comments about Proteja, including bug reports, please
+contact Jonathan Miller Kauffman (kauffmj@gmail.com).  If you are submitting
+a bug report, please be sure to include enough information to reproduce the
+problem.

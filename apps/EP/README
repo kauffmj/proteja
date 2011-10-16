@@ -1,0 +1,6 @@
+Employee Readme
+
+In order to prepare Employee for use with Proteja, run the following commands:
+
+ant init
+ant compile

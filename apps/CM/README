@@ -1,0 +1,9 @@
+CommonsMath Readme
+
+In order to prepare CommonsMath for use with Proteja, run the following commands:
+
+ant init
+ant compile
+ant compile.tests
+
+Please note that there will be many compile-time warnings - please ignore these.

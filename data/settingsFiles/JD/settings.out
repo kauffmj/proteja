@@ -1,0 +1,19 @@
+<protect.Settings>
+  <testClasses>
+    <java-class>jdepend.framework.ClassFileParserTest</java-class>
+    <java-class>jdepend.framework.CollectAllCyclesTest</java-class>
+    <java-class>jdepend.framework.ComponentTest</java-class>
+    <java-class>jdepend.framework.ConstraintTest</java-class>
+    <java-class>jdepend.framework.CycleTest</java-class>
+    <java-class>jdepend.framework.ExampleTest</java-class>
+    <java-class>jdepend.framework.FileManagerTest</java-class>
+    <java-class>jdepend.framework.FilterTest</java-class>
+    <java-class>jdepend.framework.JarFileParserTest</java-class>
+    <java-class>jdepend.framework.MetricTest</java-class>
+    <java-class>jdepend.framework.PropertyConfiguratorTest</java-class>
+  </testClasses>
+  <batchFactor>1</batchFactor>
+  <resetJVMOnBatch>true</resetJVMOnBatch>
+  <coverageType>line</coverageType>
+  <listType>ignore</listType>
+</protect.Settings>

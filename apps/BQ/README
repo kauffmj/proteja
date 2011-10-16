@@ -1,0 +1,7 @@
+Barbecue Readme
+
+In order to prepare Barbecue for use with Proteja, run the following commands:
+
+ant init
+ant compile
+ant compile.tests

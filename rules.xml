@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+This file tells the xml parser how to turn the xml produced by cobertura into java objects.
+-->
+
+<digester-rules>
+  <object-create-rule pattern="coverage" classname="coberturaParsing.Report" />
+  
+  <pattern value="coverage/packages/package" >
+    <object-create-rule classname="coberturaParsing.PackageGroup" />
+    <set-properties-rule>
+       <alias attr-name="name" prop-name="name" />
+    </set-properties-rule>
+    <set-next-rule methodname="addPackage" paramcount="1"/>
+  </pattern>
+
+   <pattern value="coverage/packages/package/classes/class">
+      <object-create-rule classname="coberturaParsing.Classs" />
+      <set-properties-rule>
+        <alias attr-name="name" prop-name="name" />
+      </set-properties-rule>
+      <set-next-rule methodname="addClass" paramcount="1"/>
+    </pattern>
+
+   <pattern value="coverage/packages/package/classes/class/methods/method" >
+     <object-create-rule classname="coberturaParsing.Methodd" />
+     <set-properties-rule>
+        <alias attr-name="name" prop-name="name" />
+     </set-properties-rule>
+     <set-next-rule methodname="addMethod" paramcount="1" />
+   </pattern>
+
+   <pattern value="coverage/packages/package/classes/class/methods/method/lines/line" >
+     <object-create-rule classname="coberturaParsing.Line" />
+     <set-properties-rule>
+       <alias attr-name="number" prop-name="lineNumber" />
+       <alias attr-name="hits"  prop-name="numberOfHits" />
+     </set-properties-rule>
+     <set-next-rule methodname="addLine" paramcount="1" />
+   </pattern>
+
+
+</digester-rules>

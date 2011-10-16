@@ -1,0 +1,6 @@
+Point Readme
+
+In order to prepare Point for use with Proteja, run the following commands:
+
+ant init
+ant compile

@@ -1,0 +1,6 @@
+LoopFinder Readme
+
+In order to prepare LoopFinder for use with Proteja, run the following commands:
+
+ant init
+ant compile

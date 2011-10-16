@@ -1,0 +1,9 @@
+<protect.Settings>
+  <testClasses>
+    <java-class>classMutants.CommissionEmployee.CommissionEmployeeTest</java-class>
+  </testClasses>
+  <batchFactor>1</batchFactor>
+  <resetJVMOnBatch>true</resetJVMOnBatch>
+  <coverageType>line</coverageType>
+  <listType>ignore</listType>
+</protect.Settings>

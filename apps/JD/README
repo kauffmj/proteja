@@ -1,0 +1,6 @@
+JDepend Readme
+
+In order to prepare JDepend for use with Proteja, run the following commands:
+
+ant init
+ant compile

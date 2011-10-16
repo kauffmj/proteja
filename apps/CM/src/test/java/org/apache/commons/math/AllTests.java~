@@ -1,0 +1,330 @@
+package org.apache.commons.math;
+
+import java.util.ArrayList;
+
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
+/**
+ * @author <b>Mike Clark</b>
+ * @author Clarkware Consulting, Inc.
+ */
+
+public class AllTests {
+
+    public static TestSuite suite() {
+        /*
+        TestSuite suite = new TestSuite("JDepend Tests");
+
+
+        suite.addTestSuite(ClassFileParserTest.class);
+        suite.addTestSuite(ComponentTest.class);
+        suite.addTestSuite(JarFileParserTest.class);
+        suite.addTestSuite(ConstraintTest.class);
+        suite.addTestSuite(CycleTest.class);
+        suite.addTestSuite(CollectAllCyclesTest.class);
+        suite.addTestSuite(FileManagerTest.class);
+        suite.addTestSuite(FilterTest.class);
+        suite.addTestSuite(MetricTest.class);
+        suite.addTestSuite(PropertyConfiguratorTest.class);
+        suite.addTestSuite(ExampleTest.class);
+         */
+    	
+        ArrayList<TestSuite> suiteList = new ArrayList<TestSuite>();
+    	TestSuite finalSuite = new TestSuite();
+    	
+    	suiteList.add(new TestSuite(org.apache.commons.math.transform.FastHadamardTransformerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.transform.FastFourierTransformerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.transform.FastSineTransformerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.transform.FastCosineTransformerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.MaxIterationsExceededExceptionTest.class));
+    	//suiteList.add(new TestSuite(org.apache.commons.math.optimization.MultiStartMultivariateRealOptimizerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.direct.NelderMeadTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.direct.MultiDirectionalTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.MultiStartDifferentiableMultivariateVectorialOptimizerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.fitting.HarmonicFitterTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.fitting.PolynomialFitterTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.fitting.CurveFitterTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.linear.SimplexSolverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.linear.SimplexTableauTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.general.GaussNewtonOptimizerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.general.NonLinearConjugateGradientOptimizerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.general.MinpackTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.univariate.BrentMinimizerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.optimization.MultiStartDifferentiableMultivariateRealOptimizerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.FunctionEvaluationExceptionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ArgumentOutsideDomainExceptionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ConvergenceExceptionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.BetaDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.NormalDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.CauchyDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.TDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.HypergeometricDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.ChiSquareDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.ContinuousDistributionAbstractTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.PascalDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.BinomialDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.ZipfDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.PoissonDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.GammaDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.ExponentialDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.FDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.IntegerDistributionAbstractTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.distribution.WeibullDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.data.LotteryTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.data.LewTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.data.CertifiedDataAbstractTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.regression.OLSMultipleLinearRegressionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.regression.MultipleLinearRegressionAbstractTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.regression.SimpleRegressionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.regression.GLSMultipleLinearRegressionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.correlation.PearsonsCorrelationTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.correlation.SpearmansRankCorrelationTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.correlation.CovarianceTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.CertifiedDataTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.DescriptiveStatisticsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.UnivariateStatisticAbstractTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.SynchronizedSummaryStatisticsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.rank.MaxTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.rank.MedianTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.rank.MinTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.rank.PercentileTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.SummaryStatisticsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.summary.ProductTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.summary.SumLogTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.summary.SumTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.summary.SumSqTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.InteractionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.StatisticalSummaryValuesTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.SynchronizedMultivariateSummaryStatisticsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.ListUnivariateImplTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.SynchronizedDescriptiveStatisticsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.FirstMomentTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.VectorialMeanTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.SemiVarianceTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.VarianceTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.MeanTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.SecondMomentTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.ThirdMomentTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.FourthMomentTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.StandardDeviationTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.VectorialCovarianceTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.GeometricMeanTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.KurtosisTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.moment.SkewnessTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.MixedListUnivariateImplTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.MultivariateSummaryStatisticsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.AbstractUnivariateStatisticTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.StorelessUnivariateStatisticAbstractTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.descriptive.AggregateSummaryStatisticsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.ranking.NaturalRankingTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.inference.TTestTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.inference.ChiSquareFactoryTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.inference.OneWayAnovaTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.inference.TestUtilsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.inference.ChiSquareTestTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.inference.TTestFactoryTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.clustering.EuclideanIntegerPointTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.clustering.KMeansPlusPlusClustererTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.FrequencyTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.stat.StatUtilsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.integration.LegendreGaussIntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.integration.RombergIntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.integration.SimpsonIntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.integration.TrapezoidIntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.solvers.NewtonSolverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.solvers.UnivariateRealSolverFactoryImplTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.solvers.LaguerreSolverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.solvers.MullerSolverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.solvers.UnivariateRealSolverUtilsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.solvers.BisectionSolverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.solvers.RiddersSolverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.solvers.BrentSolverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.polynomials.PolynomialFunctionNewtonFormTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.polynomials.PolynomialFunctionLagrangeFormTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.polynomials.PolynomialSplineFunctionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.polynomials.PolynomialFunctionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.polynomials.PolynomialsUtilsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.interpolation.NevilleInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.interpolation.BicubicSplineInterpolatingFunctionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.interpolation.MicrosphereInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.interpolation.LoessInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.interpolation.DividedDifferenceInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.interpolation.SplineInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.interpolation.SmoothingBicubicSplineInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.ComposableFunctionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.analysis.BinaryFunctionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.special.ErfTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.special.GammaTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.special.BetaTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.MathConfigurationExceptionTest.class));
+    	//suiteList.add(new TestSuite(org.apache.commons.math.estimation.EstimatedParameterTest.class));
+    	//suiteList.add(new TestSuite(org.apache.commons.math.estimation.WeightedMeasurementTest.class));
+    	//suiteList.add(new TestSuite(org.apache.commons.math.estimation.MinpackTest.class));
+    	//suiteList.add(new TestSuite(org.apache.commons.math.estimation.LevenbergMarquardtEstimatorTest.class));
+    	//suiteList.add(new TestSuite(org.apache.commons.math.estimation.GaussNewtonEstimatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.DuplicateSampleAbscissaExceptionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.fraction.FractionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.fraction.FractionFormatTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.fraction.BigFractionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.fraction.FractionFieldTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.fraction.BigFractionFieldTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.fraction.BigFractionFormatTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.SparseRealVectorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.SparseFieldMatrixTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.SparseFieldVectorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.AbstractRealVectorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.BiDiagonalTransformerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.CholeskyDecompositionImplTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.SparseRealMatrixTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.SingularValueSolverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.SingularValueDecompositionImplTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.ArrayRealVectorTest.class));
+    	//suiteList.add(new TestSuite(org.apache.commons.math.linear.BigMatrixImplTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.TriDiagonalTransformerTest.class));
+    	//suiteList.add(new TestSuite(org.apache.commons.math.linear.RealMatrixImplTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.InvalidMatrixExceptionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.RealVectorFormatAbstractTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.BlockFieldMatrixTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.FieldMatrixImplTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.QRDecompositionImplTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.MatrixUtilsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.FrenchRealVectorFormatTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.ArrayFieldVectorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.EigenSolverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.MatrixIndexExceptionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.QRSolverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.Array2DRowRealMatrixTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.RealVectorFormatTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.LUSolverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.FieldLUDecompositionImplTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.CholeskySolverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.EigenDecompositionImplTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.LUDecompositionImplTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.linear.BlockRealMatrixTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.random.TestRandomGenerator.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.random.CorrelatedRandomVectorGeneratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.random.GaussianRandomGeneratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.random.ValueServerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.random.AbstractRandomGeneratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.random.UncorrelatedRandomVectorGeneratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.random.MersenneTwisterTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.random.EmpiricalDistributionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.random.RandomAdaptorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.random.RandomDataTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.random.UniformRandomGeneratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.GeneticAlgorithmTestBinary.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.BinaryChromosomeTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.BinaryMutationTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.TournamentSelectionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.GeneticAlgorithmTestPermutations.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.OnePointCrossoverTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.FixedGenerationCountTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.ChromosomeTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.ElitisticListPopulationTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.RandomKeyMutationTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.ListPopulationTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.RandomKeyTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.genetics.FitnessCachingTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.MathExceptionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.RetryTestCase.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.util.BigRealFieldTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.util.BigRealTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.util.OpenIntToDoubleHashMapTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.util.DefaultTransformerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.util.ResizableDoubleArrayTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.util.DoubleArrayAbstractTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.util.TransformerMapTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.util.TestBean.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.util.OpenIntToFieldTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.util.ContinuedFractionTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.util.MathUtilsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.events.EventStateTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.TestProblem3.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.TestProblem1.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.TestProblemHandler.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.ContinuousOutputModelTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.jacobians.FirstOrderIntegratorWithJacobiansTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.sampling.StepNormalizerTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.sampling.DummyStepInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.sampling.NordsieckStepInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.sampling.StepInterpolatorTestUtils.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.HighamHall54IntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.ClassicalRungeKuttaIntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.DormandPrince54IntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.ThreeEighthesIntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.EulerIntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.ThreeEighthesStepInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.DormandPrince54StepInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.HighamHall54StepInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.DormandPrince853StepInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.AdamsMoultonIntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.AdamsBashforthIntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.GillStepInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.DormandPrince853IntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.ClassicalRungeKuttaStepInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.GraggBulirschStoerStepInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.MidpointIntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.GillIntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.EulerStepInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.MidpointStepInterpolatorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.nonstiff.GraggBulirschStoerIntegratorTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.TestProblem2.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.TestProblem4.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.FirstOrderConverterTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.TestProblemAbstract.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.TestProblemFactory.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.TestProblem5.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.ode.TestProblem6.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.TestUtils.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.geometry.Vector3DTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.geometry.Vector3DFormatAbstractTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.geometry.RotationOrderTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.geometry.Vector3DFormatTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.geometry.FrenchVector3DFormatTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.geometry.RotationTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.complex.ComplexTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.complex.ComplexUtilsTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.complex.ComplexFieldTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.complex.ComplexFormatTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.complex.ComplexFormatAbstractTest.class));
+    	suiteList.add(new TestSuite(org.apache.commons.math.complex.FrenchComplexFormatTest.class));
+
+    	for(TestSuite suite : suiteList)
+    	{
+    		for(int i = 0; i < suite.countTestCases();i++)
+    			finalSuite.addTest(suite.testAt(i));
+    	}
+    	
+        return finalSuite;
+        
+
+    }
+
+    public static void main(String[] args) 
+    {
+    	TestSuite suite = suite();
+    	
+    	if(args.length == 0)
+    	{
+    		for(int i = 0; i < suite.countTestCases();i++)
+    		{
+    			System.out.println(suite.testAt(i));
+    			junit.textui.TestRunner.run(suite.testAt(i));
+    	
+    		}
+    	}
+    	else
+    	{
+    		for(int i = 0; i < args.length;i++)
+    		{
+    			System.out.println(suite.testAt(Integer.parseInt(args[i])));
+    			junit.textui.TestRunner.run(suite.testAt(Integer.parseInt(args[i])));
+    		}	
+    	}
+    	
+    	System.out.println("Total Test Cases: "+ suite.countTestCases());
+    }
+}

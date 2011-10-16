@@ -1,0 +1,19 @@
+<protect.Settings>
+  <testClasses>
+    <java-class>org.apache.commons.math.ode.FirstOrderConverterTest</java-class>
+    <java-class>org.apache.commons.math.geometry.Vector3DTest</java-class>
+    <java-class>org.apache.commons.math.geometry.RotationOrderTest</java-class>
+    <java-class>org.apache.commons.math.geometry.Vector3DFormatTest</java-class>
+    <java-class>org.apache.commons.math.geometry.FrenchVector3DFormatTest</java-class>
+    <java-class>org.apache.commons.math.geometry.RotationTest</java-class>
+    <java-class>org.apache.commons.math.complex.ComplexTest</java-class>
+    <java-class>org.apache.commons.math.complex.ComplexUtilsTest</java-class>
+    <java-class>org.apache.commons.math.complex.ComplexFieldTest</java-class>
+    <java-class>org.apache.commons.math.complex.ComplexFormatTest</java-class>
+    <java-class>org.apache.commons.math.complex.FrenchComplexFormatTest</java-class>
+  </testClasses>
+  <batchFactor>1</batchFactor>
+  <resetJVMOnBatch>true</resetJVMOnBatch>
+  <coverageType>line</coverageType>
+  <listType>ignore</listType>
+</protect.Settings>
