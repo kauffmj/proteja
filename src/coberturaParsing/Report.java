@@ -16,46 +16,46 @@ public class Report
 
     public Report()
     {
-	    packages = new ArrayList<PackageGroup>(1);
+        packages = new ArrayList<PackageGroup>(1);
     }
 
     public void addPackage(PackageGroup pack)
     {
-	    packages.add(pack);
+        packages.add(pack);
     }
 
     public ArrayList<PackageGroup> getPackages()
     {
-	    return packages;
+        return packages;
     }
 
     public String getName()
     {
-	    return name;
+        return name;
     }
 
     public void setName(String name)
     {
-	    this.name = name;
+        this.name = name;
     }
 
     public void update()
     {
-	    Iterator iterator = packages.iterator();
-	    while(iterator.hasNext())
-	    {
-		    ((PackageGroup)iterator.next()).update();
-	    }
+        Iterator iterator = packages.iterator();
+        while(iterator.hasNext())
+        {
+            ((PackageGroup)iterator.next()).update();
+        }
     }
 
     public String toString()
     {
-	    String str = "Report " + name;
-	    Iterator iterator = packages.iterator();
-	    while(iterator.hasNext())
-	    {
-		    str = str + "\n" + ((PackageGroup)iterator.next()).toString();
-	    }
-	    return str;
+        String str = "Report " + name;
+        Iterator iterator = packages.iterator();
+        while(iterator.hasNext())
+        {
+            str = str + "\n" + ((PackageGroup)iterator.next()).toString();
+        }
+        return str;
     }
 }

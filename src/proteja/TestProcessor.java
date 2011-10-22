@@ -34,11 +34,11 @@ public class TestProcessor
 
     public static void main(String[] args)
     {
-	    if(args[0].equals("true"))
-		    cobertura = true;
-	    if(args[1].equals("true"))
-		    testTimer=true;
-	    applicationName = args[2];
+        if(args[0].equals("true"))
+            cobertura = true;
+        if(args[1].equals("true"))
+            testTimer=true;
+        applicationName = args[2];
 
         set = readSettings("settings.out");
         System.out.println("Settings in.");
@@ -55,18 +55,19 @@ public class TestProcessor
     }
 
     /**
-     * This method creates an arraylist of instructionBlock's listing what methods
-     * to run in what order.  Each instructionBlock is designed to run in its own jvm.
-     * So if reset jvm=false there should only be one instructionBlock, and if
-     * reset jvm=true, there will be one instruction block for each batch.
-     * An instructionBlock is just an arrayList of instructions. An instruction
-     * can be a test method, setupClass method or teardownClass method. JUnit adds
-     * the Setup and teardown for methods.
-	 *
-	 * Modified by Jonathan Miller Kauffman.
-	 *
-	 * After changes to the createRunList method, need to check the class of the Before and After methods.  Also, there
-	 * is no longer any need to loop through the test classes.
+     * This method creates an arraylist of instructionBlock's listing what
+     * methods to run in what order.  Each instructionBlock is designed to run
+     * in its own jvm. So if reset jvm=false there should only be one
+     * instructionBlock, and if reset jvm=true, there will be one instruction
+     * block for each batch. An instructionBlock is just an arrayList of
+     * instructions. An instruction can be a test method, setupClass method or
+     * teardownClass method. JUnit adds the Setup and teardown for methods.
+     *
+     * Modified by Jonathan Miller Kauffman.
+     *
+     * After changes to the createRunList method, need to check the class of the
+     * Before and After methods.  Also, there is no longer any need to loop
+     * through the test classes.
      */
     public static ArrayList<InstructionBlock> createRunList()
     {
@@ -83,20 +84,22 @@ public class TestProcessor
                 InstructionBlock instructions = new InstructionBlock();
                 ArrayList<Instruction> current = new ArrayList<Instruction>();
 
-                for (startTest = currentTest; currentTest < startTest + batchFactor && iterator.hasNext(); currentTest++)
+                for (startTest = currentTest; currentTest < startTest + 
+                    batchFactor && iterator.hasNext(); currentTest++)
                 {
-			        Method method = (Method) iterator.next();
-			        Class clazz = method.getDeclaringClass();
+                    Method method = (Method) iterator.next();
+                    Class clazz = method.getDeclaringClass();
 
-			        for (Method m : info.getBeforeMethods())
+                    for (Method m : info.getBeforeMethods())
                     {
-				        if(clazz.getName().equals(m.getDeclaringClass().getName()))
+                        if(clazz.getName().equals(
+                            m.getDeclaringClass().getName()))
                         {
                             SetupMethod start = new SetupMethod();
                             start.setClazz(clazz);
-                        	start.setMethod(m);
-                        	current.add(start);
-				        }
+                            start.setMethod(m);
+                            current.add(start);
+                        }
                     }
 
                     Test test = new Test();
@@ -104,15 +107,16 @@ public class TestProcessor
                     test.setMethod(method);
                     current.add(test);
 
-			        for (Method m : info.getAfterMethods())
+                    for (Method m : info.getAfterMethods())
                     {
-				        if(clazz.getName().equals(m.getDeclaringClass().getName()))
+                        if(clazz.getName().equals(
+                            m.getDeclaringClass().getName()))
                         {
                             TeardownMethod end = new TeardownMethod();
-                        	end.setClazz(clazz);
-                        	end.setMethod(m);
-                        	current.add(end);
-				        }
+                            end.setClazz(clazz);
+                            end.setMethod(m);
+                            current.add(end);
+                        }
                     }
                 }
                 instructions.setInstructions(current);
@@ -129,20 +133,22 @@ public class TestProcessor
             int currentTest = 1;
             while (iterator.hasNext())
             {
-                for (startTest = currentTest; currentTest < startTest + batchFactor && iterator.hasNext(); currentTest++)
+                for (startTest = currentTest; currentTest < startTest +
+                    batchFactor && iterator.hasNext(); currentTest++)
                 {
-			        Method method = (Method) iterator.next();
-			        Class clazz = method.getDeclaringClass();
+                    Method method = (Method) iterator.next();
+                    Class clazz = method.getDeclaringClass();
 
-			        for (Method m : info.getBeforeMethods())
+                    for (Method m : info.getBeforeMethods())
                     {
-				        if(clazz.getName().equals(m.getDeclaringClass().getName()))
+                        if(clazz.getName().equals(
+                            m.getDeclaringClass().getName()))
                         {
                             SetupMethod start = new SetupMethod();
-                        	start.setClazz(clazz);
-                        	start.setMethod(m);
-                        	current.add(start);
-				        }
+                            start.setClazz(clazz);
+                            start.setMethod(m);
+                            current.add(start);
+                        }
                     }
 
                     Test test = new Test();
@@ -150,15 +156,16 @@ public class TestProcessor
                     test.setMethod(method);
                     current.add(test);
 
-			        for (Method m : info.getAfterMethods())
+                    for (Method m : info.getAfterMethods())
                     {
-				        if(clazz.getName().equals(m.getDeclaringClass().getName()))
+                        if(clazz.getName().equals(
+                            m.getDeclaringClass().getName()))
                         {
                             TeardownMethod end = new TeardownMethod();
-                        	end.setClazz(clazz);
-                        	end.setMethod(m);
-                        	current.add(end);
-				        }
+                            end.setClazz(clazz);
+                            end.setMethod(m);
+                            current.add(end);
+                        }
                     }
                 }
             }
@@ -171,51 +178,54 @@ public class TestProcessor
 
     /**
      * This method handles any exclusions or ordering asked for in settings.out.
-	 *
-	 * Modified by Jonathan Miller Kauffman.
-	 *
-	 * Before this method would only consider one test class at a time when adding methods.  Now all of the test methods
-	 * from all classes are considered.
+     *
+     * Modified by Jonathan Miller Kauffman.
+     *
+     * Before this method would only consider one test class at a time when
+     * adding methods.  Now all of the test methods from all classes are
+     * considered.
      */
     public static TestClass populateContents(ArrayList<Class> classes)
     {
-	    TestClass tc = new TestClass();
+        TestClass tc = new TestClass();
         if (set.getListType().equals("exclude"))
         {
             System.out.println("exclude list found!");
 
-	        // Get all Before, After, and Test methods from all classes.
+            // Get all Before, After, and Test methods from all classes.
             TestClass temp;
-	        ArrayList<Method> beforeMethods = new ArrayList<Method>();
-	        ArrayList<Method> afterMethods = new ArrayList<Method>();
-	        ArrayList<Method> testMethods = new ArrayList<Method>();
+            ArrayList<Method> beforeMethods = new ArrayList<Method>();
+            ArrayList<Method> afterMethods = new ArrayList<Method>();
+            ArrayList<Method> testMethods = new ArrayList<Method>();
 
-	        for(Class clazz : classes)
+            for(Class clazz : classes)
             {
-		        temp = parseTestClass(clazz);
-		
-		        for(Method m : temp.getBeforeMethods())
-			        beforeMethods.add(m);
-		        for(Method m : temp.getAfterMethods())
-			        afterMethods.add(m);
-		        for(Method m : temp.getTestMethods())
-			        testMethods.add(m);
-	        }
+                temp = parseTestClass(clazz);
+        
+                for(Method m : temp.getBeforeMethods())
+                    beforeMethods.add(m);
+                for(Method m : temp.getAfterMethods())
+                    afterMethods.add(m);
+                for(Method m : temp.getTestMethods())
+                    testMethods.add(m);
+            }
 
-	        tc.setBeforeMethods(beforeMethods);
-	        tc.setAfterMethods(afterMethods);
-	        tc.setTestMethods(testMethods);
+            tc.setBeforeMethods(beforeMethods);
+            tc.setAfterMethods(afterMethods);
+            tc.setTestMethods(testMethods);
 
-	        // Remove Test methods that are on the exclude list.
+            // Remove Test methods that are on the exclude list.
             ArrayList<Method> testList = new ArrayList<Method>();
-	        for(Method method : tc.getTestMethods())
-		        testList.add(method);
+            for(Method method : tc.getTestMethods())
+                testList.add(method);
             for (PMethod pmethod : set.getMethodList())
             {
                 for (int i = 0; i < testList.size(); i++)
                 {
-                    if ((testList.get(i).getName()).equals(pmethod.getMethodName()) 
-			            && (testList.get(i).getDeclaringClass().getName()).equals(pmethod.getClazz().getName()))
+                    if ((testList.get(i).getName()).equals(
+                        pmethod.getMethodName()) && (testList.get(i).
+                        getDeclaringClass().getName()).equals(
+                        pmethod.getClazz().getName()))
                     {
                         testList.remove(i);
                     }
@@ -227,64 +237,66 @@ public class TestProcessor
         {
             System.out.println("include list found!");
 
-	        // Get all Before, After, and Test methods from all classes.
+            // Get all Before, After, and Test methods from all classes.
             TestClass temp;
-	        ArrayList<Method> beforeMethods = new ArrayList<Method>();
-	        ArrayList<Method> afterMethods = new ArrayList<Method>();
-	        ArrayList<Method> testMethods = new ArrayList<Method>();
+            ArrayList<Method> beforeMethods = new ArrayList<Method>();
+            ArrayList<Method> afterMethods = new ArrayList<Method>();
+            ArrayList<Method> testMethods = new ArrayList<Method>();
 
-	        for(Class clazz : classes)
+            for(Class clazz : classes)
             {
-		        temp = parseTestClass(clazz);
-		
-		        for(Method m : temp.getBeforeMethods())
-			        beforeMethods.add(m);
-		        for(Method m : temp.getAfterMethods())
-			        afterMethods.add(m);
-		        for(Method m : temp.getTestMethods())
-			        testMethods.add(m);
-	        }
+                temp = parseTestClass(clazz);
+        
+                for(Method m : temp.getBeforeMethods())
+                    beforeMethods.add(m);
+                for(Method m : temp.getAfterMethods())
+                    afterMethods.add(m);
+                for(Method m : temp.getTestMethods())
+                    testMethods.add(m);
+            }
 
-	        tc.setBeforeMethods(beforeMethods);
-	        tc.setAfterMethods(afterMethods);
-	        tc.setTestMethods(testMethods);
+            tc.setBeforeMethods(beforeMethods);
+            tc.setAfterMethods(afterMethods);
+            tc.setTestMethods(testMethods);
 
-	        // Add Test methods that are on the include list.
+            // Add Test methods that are on the include list.
             ArrayList<Method> newList = new ArrayList<Method>();
             for (PMethod pmethod : set.getMethodList())
             {
-		        for(Method m : tc.getTestMethods())
+                for(Method m : tc.getTestMethods())
                 {
-			        if(m.getName().equals(pmethod.getMethodName()) && m.getDeclaringClass().getName().equals(pmethod.getClazz().getName()))
+                    if(m.getName().equals(pmethod.getMethodName()) && 
+                        m.getDeclaringClass().getName().equals(
+                        pmethod.getClazz().getName()))
                     {
-				        newList.add(m);
-			        }
-		        }
+                        newList.add(m);
+                    }
+                }
             }
             tc.setTestMethods(newList);
         }
         else
         {
-	        ArrayList<Method> beforeMethods = new ArrayList<Method>();
-	        ArrayList<Method> afterMethods = new ArrayList<Method>();
-	        ArrayList<Method> testMethods = new ArrayList<Method>();
+            ArrayList<Method> beforeMethods = new ArrayList<Method>();
+            ArrayList<Method> afterMethods = new ArrayList<Method>();
+            ArrayList<Method> testMethods = new ArrayList<Method>();
 
-	        for(Class clazz : classes)
+            for(Class clazz : classes)
             {
-		        // Get all Before, After, and Test methods from all classes.
-		        TestClass temp = parseTestClass(clazz);
-		
-		        for(Method m : temp.getBeforeMethods())
-			        beforeMethods.add(m);
-		        for(Method m : temp.getAfterMethods())
-			        afterMethods.add(m);
-		        for(Method m : temp.getTestMethods())
-			        testMethods.add(m);
-	        }
+                // Get all Before, After, and Test methods from all classes.
+                TestClass temp = parseTestClass(clazz);
+        
+                for(Method m : temp.getBeforeMethods())
+                    beforeMethods.add(m);
+                for(Method m : temp.getAfterMethods())
+                    afterMethods.add(m);
+                for(Method m : temp.getTestMethods())
+                    testMethods.add(m);
+            }
 
-	        tc.setBeforeMethods(beforeMethods);
-	        tc.setAfterMethods(afterMethods);
-	        tc.setTestMethods(testMethods);
+            tc.setBeforeMethods(beforeMethods);
+            tc.setAfterMethods(afterMethods);
+            tc.setTestMethods(testMethods);
 
             System.out.println("ignoring list!");
         }
@@ -369,7 +381,8 @@ public class TestProcessor
     /**
      * writes an instuctionBlock to disk.
      */
-    public static void storeInstructionBlock(InstructionBlock ins, String filename)
+    public static void storeInstructionBlock(InstructionBlock ins,
+        String filename)
     {
         try
         {
@@ -418,16 +431,18 @@ public class TestProcessor
 
         System.out.println("Starting new JVM");
         System.out.println();
-	
-	    // testTimer property value depends on whether timing information is desired
-	    // other properties are set in case we want to output a timing file
+    
+        // testTimer property value depends on whether timing information is
+        // desired other properties are set in case we want to output a timing
+        // file
 
         p.setProperty("testTimer", Boolean.toString(testTimer));
-	    p.setProperty("batchFactor", Integer.toString(set.getBatchFactor()));
-	    p.setProperty("coverageType", set.getCoverageType());
-	    p.setProperty("resetJVMOnBatch", Boolean.toString(set.getResetJVMOnBatch()));
-	    p.setProperty("applicationName", applicationName);
-	    p.executeTarget("run");
+        p.setProperty("batchFactor", Integer.toString(set.getBatchFactor()));
+        p.setProperty("coverageType", set.getCoverageType());
+        p.setProperty("resetJVMOnBatch", Boolean.toString(
+            set.getResetJVMOnBatch()));
+        p.setProperty("applicationName", applicationName);
+        p.executeTarget("run");
     }
 
     /**
@@ -467,8 +482,9 @@ public class TestProcessor
         }
     }
 
-    /**********************************************************************************************
-     *  After this point are optional methods that make the system work with Cobertura.
+    /***************************************************************************
+     *  After this point are optional methods that make the system work with
+     *  Cobertura.
      */
     public static void coberturaBeforeProgram()
     {
@@ -539,10 +555,11 @@ public class TestProcessor
         p.addBuildListener(consoleLogger);
 
         p.setProperty("numberOfGroups", Integer.toString(groupNumber - 1));
-	    p.setProperty("batchFactor", Integer.toString(set.getBatchFactor()));
-	    p.setProperty("coverageType", set.getCoverageType());
-	    p.setProperty("resetJVMOnBatch", Boolean.toString(set.getResetJVMOnBatch()));
-	    p.setProperty("applicationName", applicationName);
+        p.setProperty("batchFactor", Integer.toString(set.getBatchFactor()));
+        p.setProperty("coverageType", set.getCoverageType());
+        p.setProperty("resetJVMOnBatch", Boolean.toString(
+            set.getResetJVMOnBatch()));
+        p.setProperty("applicationName", applicationName);
         p.executeTarget("constructMatrix");
         p.executeTarget("cleanup");
     }

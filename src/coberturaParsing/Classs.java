@@ -17,65 +17,65 @@ public class Classs
 
     public Classs()
     {
-	    methods = new ArrayList<Methodd>(10);
-	    isHit=false;
+        methods = new ArrayList<Methodd>(10);
+        isHit=false;
     }
 
     public void setIsHit(boolean isHit)
     {
-	    this.isHit = isHit;
+        this.isHit = isHit;
     }
 
     public boolean getIsHit()
     {
-	    return isHit;
+        return isHit;
     }
 
     public void addMethod(Methodd method)
     {
-	    methods.add(method);
+        methods.add(method);
     }
 
     public ArrayList<Methodd> getMethods()
     {
-	    return methods;
+        return methods;
     }
 
     public void setName(String name)
     {
-	    this.name = name;
+        this.name = name;
     }
 
     public String getName()
     {
-	    return name;
+        return name;
     }
 
     public void update()
     {
-	    Iterator first = methods.iterator();
-	    while(first.hasNext())
-	    {
-		    ((Methodd)first.next()).update();
-	    }
-	    Iterator iterator = methods.iterator();
-	    while(iterator.hasNext())
-	    {
-		    if(((Methodd)iterator.next()).getIsHit())
-		    {
-			    isHit=true;
-		    }
-	    }
+        Iterator first = methods.iterator();
+        while(first.hasNext())
+        {
+            ((Methodd)first.next()).update();
+        }
+        Iterator iterator = methods.iterator();
+        while(iterator.hasNext())
+        {
+            if(((Methodd)iterator.next()).getIsHit())
+            {
+                isHit=true;
+            }
+        }
     }
 
     public String toString()
     {
-	    Iterator iterator = methods.iterator();
-	    String str = "  Class: " + name + "\n  Hit: " + isHit;
-	    while(iterator.hasNext())
-	    {
-		    str = str + "\n" + ((Methodd)iterator.next()).toString();
-	    }
-	    return str;
+        Iterator iterator = methods.iterator();
+        String str = "  Class: " + name + "\n  Hit: " + isHit;
+        while(iterator.hasNext())
+        {
+            str = str + "\n" + ((Methodd)iterator.next()).toString();
+        }
+        return str;
     }
 }

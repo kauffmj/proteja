@@ -31,9 +31,10 @@ public class InstructionReader
     public static void main(String[] args)
     {
         runner = new JUnitCore();
-	    results = new File(args[5] + "_Timing.dat");
+        results = new File(args[5] + "_Timing.dat");
 
-        InstructionBlock instructions = readInstructionBlock("instructions.out");
+        InstructionBlock instructions =
+            readInstructionBlock("instructions.out");
         for (Instruction ins : instructions.getInstructions())
         {
             if (ins instanceof SetupMethod)
@@ -51,7 +52,8 @@ public class InstructionReader
         }
         if (args[0].equals("true"))
         {
-            net.sourceforge.cobertura.coveragedata.ProjectData.saveGlobalProjectData();
+            net.sourceforge.cobertura.coveragedata.ProjectData.
+                saveGlobalProjectData();
         }
     }
 
@@ -68,46 +70,51 @@ public class InstructionReader
         }
     }
 
-    public static void runTestMethod(Instruction ins, String timer, String batchFactor, String coverageType, String resetJVMOnBatch, String applicationName)
+    public static void runTestMethod(Instruction ins, String timer,
+        String batchFactor, String coverageType, String resetJVMOnBatch,
+        String applicationName)
     {
         Request req = Request.method(ins.getClazz(), ins.getMethod().getName());
 
-	    // get the starting time if the test timer is to be run
-	    if(timer.equals("true"))
-	    {
-		    time1 = System.nanoTime();
-	    }
+        // get the starting time if the test timer is to be run
+        if(timer.equals("true"))
+        {
+            time1 = System.nanoTime();
+        }
 
         Result result = runner.run(req);
 
-	    // get the ending time and write the method name, execution time, batch factor, coverage type, JVM restart, application name,
+        // get the ending time and write the method name, execution time,
+        // batch factor, coverage type, JVM restart, application name,
         // and pass/fail information to a file
 
-	    if(timer.equals("true"))
-	    {
-		    time2 = System.nanoTime();
+        if(timer.equals("true"))
+        {
+            time2 = System.nanoTime();
 
-		    try
+            try
             {
-			    out = new BufferedWriter(new FileWriter(results, true));
-			    out.write(ins.getMethod().getDeclaringClass().getName() + "." + ins.getMethod().getName() + "\t" +Long.toString(time2 - time1) + 
-				    "\t" + batchFactor + "\t" + coverageType + "\t" + resetJVMOnBatch + "\t" + applicationName 
-				    + "\t" + (!result.wasSuccessful()) + "\n");
-			    out.flush();
-		    } catch(FileNotFoundException e){}
-		      catch(IOException e){}
+                out = new BufferedWriter(new FileWriter(results, true));
+                out.write(ins.getMethod().getDeclaringClass().getName() + "." +
+                    ins.getMethod().getName() + "\t" +
+                    Long.toString(time2 - time1) + "\t" + batchFactor + "\t" +
+                    coverageType + "\t" + resetJVMOnBatch + "\t" +
+                    applicationName + "\t" + (!result.wasSuccessful()) + "\n");
+                out.flush();
+            } catch(FileNotFoundException e){}
+              catch(IOException e){}
         }
 
-	    // the test did not fail
-	    if(result.getFailureCount() == 0)
-		    System.out.println(ins.getMethod().getName() + " passed.");
+        // the test did not fail
+        if(result.getFailureCount() == 0)
+            System.out.println(ins.getMethod().getName() + " passed.");
 
-	    // print any failures for the current test case
-	    else
-	    {
-		    for(Failure fail : result.getFailures())
-			    System.out.println(fail.getMessage());
-	    }		
+        // print any failures for the current test case
+        else
+        {
+            for(Failure fail : result.getFailures())
+                System.out.println(fail.getMessage());
+        }        
     }
 
     /**
@@ -126,11 +133,13 @@ public class InstructionReader
             {
                 complete = complete + temp;
             }
-            InstructionBlock instructions = (InstructionBlock) xstream.fromXML(complete);
+            InstructionBlock instructions =
+                (InstructionBlock) xstream.fromXML(complete);
             return instructions;
         } catch (IOException exc)
         {
-            System.out.println("There was a problem reading the instructions file");
+            System.out.println("There was a problem reading the instructions " +
+                "file");
             exc.printStackTrace();
             System.exit(1);
         }

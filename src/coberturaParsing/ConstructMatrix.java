@@ -17,7 +17,8 @@ public class ConstructMatrix
         int[][] coverageMatrix;
         String settingsFile = "settings.out";
         String arrayFile = "coverageReports/";
-        String matrixFileName = "coverageReports/" + args[4] + "_" + args[1] + "_" + args[2] + "_" + args[3] + "_Coverage.dat";
+        String matrixFileName = "coverageReports/" + args[4] + "_" + args[1] + 
+            "_" + args[2] + "_" + args[3] + "_Coverage.dat";
         int batchFactor = 1;
         proteja.Settings set;
 
@@ -74,7 +75,8 @@ public class ConstructMatrix
             int currentColumn = 0;
             for (int i = 1; i <= numberOfTests; i += batchFactor) {
                 try {
-                    current = arrayRetrieveFromXML(arrayFile + i + "-" + (i + batchFactor - 1) + ".out");
+                    current = arrayRetrieveFromXML(arrayFile + i + "-" + 
+                        (i + batchFactor - 1) + ".out");
                 } catch (IOException e) {
                     System.out.println("There was a problem reading the " +
                             "arrays");
@@ -82,7 +84,8 @@ public class ConstructMatrix
                 }
                 for (int j = 0; j < current.length; j++) {
                     coverageMatrix[j][currentColumn] = current[j];
-                    System.out.println("updating row: " + j + "column: " + currentColumn);
+                    System.out.println("updating row: " + j + "column: " + 
+                        currentColumn);
                 }
                 currentColumn++;
             }
@@ -146,7 +149,8 @@ public class ConstructMatrix
     /**
      * Reads the settings.out file from the disk.
      */
-    public static proteja.Settings setRetrieveFromXML(String name) throws IOException
+    public static proteja.Settings setRetrieveFromXML(String name) 
+        throws IOException
     {
         XStream xstream = new XStream();
         FileReader fileIn = new FileReader(name);
@@ -191,10 +195,11 @@ public class ConstructMatrix
             for (int j = 1; j < matrix[i].length; j++)
             {
                 sb.append(" ");
-		        sb.append(matrix[i][j]);
+                sb.append(matrix[i][j]);
             }
             sb.append("\n");
         }
         return sb.toString();
     }
 }
+

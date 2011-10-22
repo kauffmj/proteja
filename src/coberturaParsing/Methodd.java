@@ -17,65 +17,65 @@ public class Methodd
 
     public Methodd()
     {
-	    lines=new ArrayList<Line>(100);
-	    isHit = false;
+        lines=new ArrayList<Line>(100);
+        isHit = false;
     }
 
     public void addLine(Line Line)
     {
-	    lines.add(Line);
+        lines.add(Line);
     }
 
     public ArrayList<Line> getLines()
     {
-	    return lines;
+        return lines;
     }
 
     public void setIsHit(boolean isHit)
     {
-	    this.isHit = isHit;
+        this.isHit = isHit;
     }
 
     public void setName(String name)
     {
-	    this.name= name;
+        this.name= name;
     }
 
     public boolean getIsHit()
     {
-	    return isHit;
+        return isHit;
     }
 
     public String getName()
     {
-	    return name;
+        return name;
     }
 
     public void update()
     {
-	    Iterator first = lines.iterator();
-	    while(first.hasNext())
-	    {
-		    ((Line)first.next()).update();
-	    }
-	    Iterator iterator = lines.iterator();
-	    while(iterator.hasNext())
-	    {
-	        if(((Line)iterator.next()).getIsHit())
-		    {
-		        isHit = true;
-		    }
-	    }
+        Iterator first = lines.iterator();
+        while(first.hasNext())
+        {
+            ((Line)first.next()).update();
+        }
+        Iterator iterator = lines.iterator();
+        while(iterator.hasNext())
+        {
+            if(((Line)iterator.next()).getIsHit())
+            {
+                isHit = true;
+            }
+        }
     }
 
     public String toString()
     {
-	    Iterator iterator = lines.iterator();
-	    String str = "    Method: " + name + "\n    Hit: " + isHit;
-	    while(iterator.hasNext())
-	    {
-		    str = str + "\n" + ((Line)iterator.next()).toString();
-	    }
-	    return str;
+        Iterator iterator = lines.iterator();
+        String str = "    Method: " + name + "\n    Hit: " + isHit;
+        while(iterator.hasNext())
+        {
+            str = str + "\n" + ((Line)iterator.next()).toString();
+        }
+        return str;
     }
 }

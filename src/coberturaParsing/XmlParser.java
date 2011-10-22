@@ -16,8 +16,8 @@ import java.util.*;
 public class XmlParser
 {
     /**
-     * To generate a matrix using hit counts instead of a binary true/false, change
-     * any place these variables apear to the getNumberOfHits method call.
+     * To generate a matrix using hit counts instead of a binary true/false, 
+     * change any place these variables apear to the getNumberOfHits method call
      */
     private static int HAS_BEEN_HIT = 1;
     private static int HAS_NOT_BEEN_HIT = 0;
@@ -28,7 +28,8 @@ public class XmlParser
         String settingsFilename = "settings.out";
 
         /**
-         * Setup apache digester and parse the xml file passed as args[0] using rules passed as args[1]
+         * Setup apache digester and parse the xml file passed as args[0] using 
+         * rules passed as args[1]
          */
         try
         {
@@ -39,7 +40,8 @@ public class XmlParser
             System.out.println(args[1]);
             System.out.println("Files in");
 
-            Digester digester = DigesterLoader.createDigester((rules.toURI()).toURL());
+            Digester digester = DigesterLoader.createDigester(
+                (rules.toURI()).toURL());
             System.out.println("File Converted");
             Report report = (Report) digester.parse(input);
             System.out.println("Objects Created");
@@ -66,8 +68,8 @@ public class XmlParser
                     }
                     else
                     {
-                        System.out.println("Invalid coverage type. Valid types are: " +
-                                "'class', 'method', 'line'.");
+                        System.out.println("Invalid coverage type. Valid types"+
+                                " are: 'class', 'method', 'line'.");
                         System.exit(1);
                     }
                 }
@@ -79,7 +81,8 @@ public class XmlParser
     }
 
     /**
-     * Create a coverage array for the current file using class coverage as the requirements.
+     * Create a coverage array for the current file using class coverage as the
+     * requirements.
      */
     public static void createClassCoverage(Report report)
     {
@@ -100,7 +103,8 @@ public class XmlParser
         }
 
         /**
-         * Place a 1 for each class that is covered and a 0 for each class that is not covered.
+         * Place a 1 for each class that is covered and a 0 for each class that
+         * is not covered.
          */
         int[] array = new int[count];
         int currentClass = 0;
@@ -137,7 +141,8 @@ public class XmlParser
     }
 
     /**
-     * Create a coverage array for the current file using method coverage as the requirements.
+     * Create a coverage array for the current file using method coverage as the
+     * requirements.
      */
     public static void createMethodCoverage(Report report)
     {
@@ -162,7 +167,8 @@ public class XmlParser
         }
 
         /**
-         * Place a 1 for each method that is covered and a 0 for each class that is not covered.
+         * Place a 1 for each method that is covered and a 0 for each class that
+         * is not covered.
          */
         int[] array = new int[count];
         int currentMethod = 0;
@@ -202,7 +208,8 @@ public class XmlParser
     }
 
     /**
-     * Create a coverage array for the current file using line coverage as the requirements.
+     * Create a coverage array for the current file using line coverage as the
+     * requirements.
      */
     public static void createLineCoverage(Report report)
     {
@@ -231,7 +238,8 @@ public class XmlParser
         }
 
         /**
-         * Place a 1 for each line that is covered and a 0 for each class that is not covered.
+         * Place a 1 for each line that is covered and a 0 for each class that
+         * is not covered.
          */
         int[] array = new int[count];
         int currentLine = 0;
@@ -295,7 +303,8 @@ public class XmlParser
     /**
      * Reads the settings file from disk.
      */
-    public static proteja.Settings retrieveFromXML(String name) throws IOException
+    public static proteja.Settings retrieveFromXML(String name)
+        throws IOException
     {
         XStream xstream = new XStream();
         FileReader fileIn = new FileReader(name);

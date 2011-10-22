@@ -21,48 +21,48 @@ import java.io.FileNotFoundException;
 
 public class ModifyTestSuite
 {
-	public static void main(String[] args)
-	{
-		// read in the settings
-		Settings set = TestProcessor.readSettings("settings.out");
-      	System.out.println("Settings in.");
+    public static void main(String[] args)
+    {
+        // read in the settings
+        Settings set = TestProcessor.readSettings("settings.out");
+          System.out.println("Settings in.");
 
-		FileReader fileIn = null;
-		try
+        FileReader fileIn = null;
+        try
         {
-		    fileIn = new FileReader(args[0]);
-		} catch(FileNotFoundException e)
+            fileIn = new FileReader(args[0]);
+        } catch(FileNotFoundException e)
         {
-			System.out.println("File not found.");
-		}
+            System.out.println("File not found.");
+        }
         BufferedReader read = new BufferedReader(fileIn);
         String temp;
-		ArrayList<PMethod> list = new ArrayList<PMethod>();
-	
+        ArrayList<PMethod> list = new ArrayList<PMethod>();
+    
         System.out.println("Reading file");
-		PMethod method = new PMethod();
-		try
+        PMethod method = new PMethod();
+        try
         {
-        	while ((temp = read.readLine()) != null)
+            while ((temp = read.readLine()) != null)
             {
-		        int lastPeriod = temp.lastIndexOf(".");
-		        method.setClazz(Class.forName(temp.substring(0,lastPeriod)));
-        	    method.setMethodName(temp.substring(lastPeriod+1));
-		        list.add(method);
-		        method = new PMethod();
-        	}
-		} catch(IOException e)
+                int lastPeriod = temp.lastIndexOf(".");
+                method.setClazz(Class.forName(temp.substring(0,lastPeriod)));
+                method.setMethodName(temp.substring(lastPeriod+1));
+                list.add(method);
+                method = new PMethod();
+            }
+        } catch(IOException e)
         {
-			System.out.println("There was a problem reading the file.");
-		}
-		catch(ClassNotFoundException e)
+            System.out.println("There was a problem reading the file.");
+        }
+        catch(ClassNotFoundException e)
         {
-			System.out.println("The class could not be found.");
-		}
+            System.out.println("The class could not be found.");
+        }
 
-		set.setMethodList(list);
-		set.setListType("include");
+        set.setMethodList(list);
+        set.setListType("include");
 
-		CreateSettings.storeSettings(set, "settings.out");
-	}
+        CreateSettings.storeSettings(set, "settings.out");
+    }
 }

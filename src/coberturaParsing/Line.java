@@ -15,65 +15,66 @@ public class Line
 
     public Line()
     {
-	    isHit=false;
-	    isValid = false;
-	    numberOfHits = 0;
+        isHit=false;
+        isValid = false;
+        numberOfHits = 0;
     }
 
     public void setIsHit(boolean isHit)
     {
-	    this.isHit = isHit;
+        this.isHit = isHit;
     }
 
     public void setIsValid(boolean isValid)
     {
-	    this.isValid = isValid;
+        this.isValid = isValid;
     }
 
     public void setNumberOfHits(long numberOfHits)
     {
-	    this.numberOfHits = numberOfHits;
+        this.numberOfHits = numberOfHits;
     }
 
     public void addHits(long hits)
     {
-	    numberOfHits+=hits;
+        numberOfHits+=hits;
     }
 
     public boolean getIsHit()
     {
-	    return isHit;
+        return isHit;
     }
 
     public boolean getIsValid()
     {
-	    return isValid;
+        return isValid;
     }
 
     public long getNumberOfHits()
     {
-	    return numberOfHits;
+        return numberOfHits;
     }
 
     public int getLineNumber()
     {
-	    return lineNumber;
+        return lineNumber;
     }
 
     public void setLineNumber(int lineNumber)
     {
-	    this.lineNumber = lineNumber;
+        this.lineNumber = lineNumber;
     }
 
     public void update()
     {
-	    if(numberOfHits>0)
-	        isHit = true;
+        if(numberOfHits>0)
+            isHit = true;
     }
 
     public String toString()
     {
-	    return ("      line" + lineNumber + "\tHit: " + isHit +
-		    "\tHits: " + numberOfHits);
+        return ("      line" + lineNumber + "\tHit: " + isHit +
+            "\tHits: " + numberOfHits);
     }
 }
+
