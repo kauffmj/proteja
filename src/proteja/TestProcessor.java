@@ -55,23 +55,26 @@ public class TestProcessor
     }
 
     /**
-     * This method creates an arraylist of instructionBlock's listing what
-     * methods to run in what order.  Each instructionBlock is designed to run
-     * in its own jvm. So if reset jvm=false there should only be one
-     * instructionBlock, and if reset jvm=true, there will be one instruction
-     * block for each batch. An instructionBlock is just an arrayList of
-     * instructions. An instruction can be a test method, setupClass method or
-     * teardownClass method. JUnit adds the Setup and teardown for methods.
+     * This method creates an arraylist of instructionBlock's listing
+     * what methods to run in what order.  Each instructionBlock is
+     * designed to run in its own jvm. So if reset jvm=false there
+     * should only be one instructionBlock, and if reset jvm=true,
+     * there will be one instruction block for each batch. An
+     * instructionBlock is just an arrayList of instructions. An
+     * instruction can be a test method, setupClass method or
+     * teardownClass method. JUnit adds the Setup and teardown for
+     * methods.
      *
      * Modified by Jonathan Miller Kauffman.
      *
-     * After changes to the createRunList method, need to check the class of the
-     * Before and After methods.  Also, there is no longer any need to loop
-     * through the test classes.
+     * After changes to the createRunList method, need to check the
+     * class of the Before and After methods.  Also, there is no
+     * longer any need to loop through the test classes.
      */
     public static ArrayList<InstructionBlock> createRunList()
     {
-        ArrayList<InstructionBlock> runList = new ArrayList<InstructionBlock>();
+        ArrayList<InstructionBlock> runList =
+            new ArrayList<InstructionBlock>();
         int batchFactor = set.getBatchFactor();
         if (set.getResetJVMOnBatch())
         {
@@ -81,11 +84,14 @@ public class TestProcessor
             int currentTest = 1;
             while (iterator.hasNext())
             {
-                InstructionBlock instructions = new InstructionBlock();
-                ArrayList<Instruction> current = new ArrayList<Instruction>();
+                InstructionBlock instructions =
+                    new InstructionBlock();
+                ArrayList<Instruction> current =
+                    new ArrayList<Instruction>();
 
-                for (startTest = currentTest; currentTest < startTest + 
-                    batchFactor && iterator.hasNext(); currentTest++)
+                for (startTest = currentTest; currentTest <
+                    startTest + batchFactor && iterator.hasNext();
+                    currentTest++)
                 {
                     Method method = (Method) iterator.next();
                     Class clazz = method.getDeclaringClass();
@@ -126,15 +132,17 @@ public class TestProcessor
         else
         {
             InstructionBlock instructions = new InstructionBlock();
-            ArrayList<Instruction> current = new ArrayList<Instruction>();
+            ArrayList<Instruction> current =
+                new ArrayList<Instruction>();
             TestClass info = populateContents(set.getTestClasses());
             Iterator iterator = info.getTestMethods().iterator();
             int startTest = 1;
             int currentTest = 1;
             while (iterator.hasNext())
             {
-                for (startTest = currentTest; currentTest < startTest +
-                    batchFactor && iterator.hasNext(); currentTest++)
+                for (startTest = currentTest; currentTest <
+                    startTest + batchFactor && iterator.hasNext();
+                    currentTest++)
                 {
                     Method method = (Method) iterator.next();
                     Class clazz = method.getDeclaringClass();
@@ -177,13 +185,14 @@ public class TestProcessor
     }
 
     /**
-     * This method handles any exclusions or ordering asked for in settings.out.
+     * This method handles any exclusions or ordering asked for in
+     * settings.out.
      *
      * Modified by Jonathan Miller Kauffman.
      *
-     * Before this method would only consider one test class at a time when
-     * adding methods.  Now all of the test methods from all classes are
-     * considered.
+     * Before this method would only consider one test class at a time
+     * when adding methods.  Now all of the test methods from all
+     * classes are considered.
      */
     public static TestClass populateContents(ArrayList<Class> classes)
     {
@@ -192,7 +201,8 @@ public class TestProcessor
         {
             System.out.println("exclude list found!");
 
-            // Get all Before, After, and Test methods from all classes.
+            // Get all Before, After, and Test methods from all
+            // classes.
             TestClass temp;
             ArrayList<Method> beforeMethods = new ArrayList<Method>();
             ArrayList<Method> afterMethods = new ArrayList<Method>();
@@ -237,7 +247,8 @@ public class TestProcessor
         {
             System.out.println("include list found!");
 
-            // Get all Before, After, and Test methods from all classes.
+            // Get all Before, After, and Test methods from all
+            // classes.
             TestClass temp;
             ArrayList<Method> beforeMethods = new ArrayList<Method>();
             ArrayList<Method> afterMethods = new ArrayList<Method>();
@@ -283,7 +294,8 @@ public class TestProcessor
 
             for(Class clazz : classes)
             {
-                // Get all Before, After, and Test methods from all classes.
+                // Get all Before, After, and Test methods from all
+                // classes.
                 TestClass temp = parseTestClass(clazz);
         
                 for(Method m : temp.getBeforeMethods())
@@ -370,7 +382,8 @@ public class TestProcessor
             return config;
         } catch (IOException exc)
         {
-            System.out.println("There was a problem reading the settings file");
+            System.out.println("There was a problem reading the " +
+                "settings file");
             exc.printStackTrace();
             System.exit(1);
         }
@@ -399,13 +412,15 @@ public class TestProcessor
             fileOut.close();
         } catch (IOException exc)
         {
-            System.out.println("There was a problem writing the instructions.");
+            System.out.println("There was a problem writing the " +
+                "instructions.");
             exc.printStackTrace();
             System.exit(1);
         }
     }
 
-    public static void LaunchBlock(InstructionBlock ins, String[] args)
+    public static void LaunchBlock(InstructionBlock ins,
+        String[] args)
     {
         storeInstructionBlock(ins, "instructions.out");
 
@@ -432,12 +447,13 @@ public class TestProcessor
         System.out.println("Starting new JVM");
         System.out.println();
     
-        // testTimer property value depends on whether timing information is
-        // desired other properties are set in case we want to output a timing
-        // file
+        // testTimer property value depends on whether timing
+        // information is desired other properties are set in case we
+        // want to output a timing file
 
         p.setProperty("testTimer", Boolean.toString(testTimer));
-        p.setProperty("batchFactor", Integer.toString(set.getBatchFactor()));
+        p.setProperty("batchFactor", Integer.toString(
+            set.getBatchFactor()));
         p.setProperty("coverageType", set.getCoverageType());
         p.setProperty("resetJVMOnBatch", Boolean.toString(
             set.getResetJVMOnBatch()));
@@ -446,8 +462,8 @@ public class TestProcessor
     }
 
     /**
-     * Include any needed file manipulations here.  The code here will execute
-     * after each JVM shutdown.
+     * Include any needed file manipulations here.  The code here will
+     * execute after each JVM shutdown.
      */
     public static void afterFileManip()
     {
@@ -458,8 +474,8 @@ public class TestProcessor
     }
 
     /**
-     * Include any needed file manipulations here. The code here will execute
-     * once, just before shutdown of the proteja system.
+     * Include any needed file manipulations here. The code here will
+     * execute once, just before shutdown of the proteja system.
      */
     public static void endOfProgramFileManip()
     {
@@ -482,9 +498,9 @@ public class TestProcessor
         }
     }
 
-    /***************************************************************************
-     *  After this point are optional methods that make the system work with
-     *  Cobertura.
+    /*****************************************************************
+     *  After this point are optional methods that make the system
+     *  work with Cobertura.
      */
     public static void coberturaBeforeProgram()
     {
@@ -509,7 +525,8 @@ public class TestProcessor
     }
 
     /**
-     * launches ant which moves and renames the files cobertura produces.
+     * launches ant which moves and renames the files cobertura
+     * produces.
      */
     public static void coberturaAfterFileManip()
     {
@@ -554,8 +571,10 @@ public class TestProcessor
         consoleLogger.setMessageOutputLevel(Project.MSG_INFO);
         p.addBuildListener(consoleLogger);
 
-        p.setProperty("numberOfGroups", Integer.toString(groupNumber - 1));
-        p.setProperty("batchFactor", Integer.toString(set.getBatchFactor()));
+        p.setProperty("numberOfGroups", Integer.toString(
+            groupNumber - 1));
+        p.setProperty("batchFactor", Integer.toString(
+            set.getBatchFactor()));
         p.setProperty("coverageType", set.getCoverageType());
         p.setProperty("resetJVMOnBatch", Boolean.toString(
             set.getResetJVMOnBatch()));

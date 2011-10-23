@@ -1,8 +1,8 @@
 /**
  * ModifyTestSuite.java
  * 
- * Reads the modified test case list and modifies the settings.out file so the 
- * test suite executes according to the modification.
+ * Reads the modified test case list and modifies the settings.out
+ * file so the test suite executes according to the modification.
  * 
  * Jonathan Miller Kauffman
 */
@@ -46,14 +46,16 @@ public class ModifyTestSuite
             while ((temp = read.readLine()) != null)
             {
                 int lastPeriod = temp.lastIndexOf(".");
-                method.setClazz(Class.forName(temp.substring(0,lastPeriod)));
+                method.setClazz(Class.forName(
+                    temp.substring(0,lastPeriod)));
                 method.setMethodName(temp.substring(lastPeriod+1));
                 list.add(method);
                 method = new PMethod();
             }
         } catch(IOException e)
         {
-            System.out.println("There was a problem reading the file.");
+            System.out.println("There was a problem reading the " +
+                "file.");
         }
         catch(ClassNotFoundException e)
         {

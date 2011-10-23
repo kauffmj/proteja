@@ -44,7 +44,8 @@ public class CreateSettings
             fileOut.close();
         } catch (IOException exc)
         {
-            System.out.println("There was a problem writing the file to disk!");
+            System.out.println("There was a problem writing the " +
+                "file to disk!");
             exc.printStackTrace();
         }
     }

@@ -54,7 +54,8 @@ public class Report
         Iterator iterator = packages.iterator();
         while(iterator.hasNext())
         {
-            str = str + "\n" + ((PackageGroup)iterator.next()).toString();
+            str = str + "\n" +
+                ((PackageGroup)iterator.next()).toString();
         }
         return str;
     }

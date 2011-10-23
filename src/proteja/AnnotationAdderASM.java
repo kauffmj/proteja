@@ -23,9 +23,12 @@ public class AnnotationAdderASM
             System.exit(0);
         }
 
-        ClassWriter cw = new ClassWriter(0); // Writes a class's bytes.
-        GetMethodNames gmn = new GetMethodNames(cw); // Adapter adds annotations
-        ClassReader cr = null; // Reads in the class.
+        // Writes a class's bytes.
+        ClassWriter cw = new ClassWriter(0);
+        // Adapter adds annotations
+        GetMethodNames gmn = new GetMethodNames(cw);
+        // Reads in the class.
+        ClassReader cr = null;
 
         try
         {
@@ -33,7 +36,8 @@ public class AnnotationAdderASM
 
         } catch(IOException e)
         {
-            System.out.println("There was a problem reading the file.");
+            System.out.println("There was a problem reading the " +
+                "file.");
             e.printStackTrace();
             System.exit(0);
         }
@@ -43,14 +47,15 @@ public class AnnotationAdderASM
 
         try
         {
-            File file = new File(args[1] + "/" + args[0].replaceAll("\\.","/") +
-                ".class");
+            File file = new File(args[1] + "/" +
+                args[0].replaceAll("\\.","/") + ".class");
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(b2); // Write the class to file.
 
         } catch(IOException e)
         {
-            System.out.println("There was a problem writing to file.");
+            System.out.println("There was a problem writing to " +
+                "file.");
         }
     }
 }

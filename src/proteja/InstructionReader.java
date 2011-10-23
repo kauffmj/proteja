@@ -47,7 +47,8 @@ public class InstructionReader
             }
             else if (ins instanceof Test)
             {
-                runTestMethod(ins, args[1], args[2], args[3], args[4], args[5]);
+                runTestMethod(ins, args[1], args[2], args[3], args[4],
+                    args[5]);
             }
         }
         if (args[0].equals("true"))
@@ -64,17 +65,19 @@ public class InstructionReader
             ins.getMethod().invoke(ins);
         } catch (Exception e)
         {
-            System.out.println("There was a problem invoking a method");
+            System.out.println("There was a problem invoking a " +
+                "method");
             e.printStackTrace();
             System.exit(1);
         }
     }
 
     public static void runTestMethod(Instruction ins, String timer,
-        String batchFactor, String coverageType, String resetJVMOnBatch,
-        String applicationName)
+        String batchFactor, String coverageType,
+        String resetJVMOnBatch, String applicationName)
     {
-        Request req = Request.method(ins.getClazz(), ins.getMethod().getName());
+        Request req = Request.method(ins.getClazz(),
+            ins.getMethod().getName());
 
         // get the starting time if the test timer is to be run
         if(timer.equals("true"))
@@ -84,9 +87,9 @@ public class InstructionReader
 
         Result result = runner.run(req);
 
-        // get the ending time and write the method name, execution time,
-        // batch factor, coverage type, JVM restart, application name,
-        // and pass/fail information to a file
+        // get the ending time and write the method name, execution
+        // time, batch factor, coverage type, JVM restart, application
+        // name, and pass/fail information to a file
 
         if(timer.equals("true"))
         {
@@ -94,12 +97,14 @@ public class InstructionReader
 
             try
             {
-                out = new BufferedWriter(new FileWriter(results, true));
-                out.write(ins.getMethod().getDeclaringClass().getName() + "." +
-                    ins.getMethod().getName() + "\t" +
-                    Long.toString(time2 - time1) + "\t" + batchFactor + "\t" +
-                    coverageType + "\t" + resetJVMOnBatch + "\t" +
-                    applicationName + "\t" + (!result.wasSuccessful()) + "\n");
+                out = new BufferedWriter(new FileWriter(results,
+                    true));
+                out.write(ins.getMethod().getDeclaringClass().
+                    getName() + "." + ins.getMethod().getName() +
+                    "\t" + Long.toString(time2 - time1) + "\t" +
+                    batchFactor + "\t" + coverageType + "\t" +
+                    resetJVMOnBatch + "\t" + applicationName + "\t" +
+                    (!result.wasSuccessful()) + "\n");
                 out.flush();
             } catch(FileNotFoundException e){}
               catch(IOException e){}
@@ -107,7 +112,8 @@ public class InstructionReader
 
         // the test did not fail
         if(result.getFailureCount() == 0)
-            System.out.println(ins.getMethod().getName() + " passed.");
+            System.out.println(ins.getMethod().getName() +
+                " passed.");
 
         // print any failures for the current test case
         else
@@ -120,7 +126,8 @@ public class InstructionReader
     /**
      * Read the Instruction block from disk.
      */
-    public static InstructionBlock readInstructionBlock(String filepath)
+    public static InstructionBlock readInstructionBlock(
+        String filepath)
     {
         try
         {
@@ -138,8 +145,8 @@ public class InstructionReader
             return instructions;
         } catch (IOException exc)
         {
-            System.out.println("There was a problem reading the instructions " +
-                "file");
+            System.out.println("There was a problem reading the " +
+                "instructions file");
             exc.printStackTrace();
             System.exit(1);
         }

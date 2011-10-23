@@ -1,8 +1,8 @@
 /**
  * ReadClassesAddAnnotations.java
  * 
- * Reads the list of classes from settings.out and adds JUnit annotations to
- * each of them using AnnotationAdderASM.
+ * Reads the list of classes from settings.out and adds JUnit
+ * annotations to each of them using AnnotationAdderASM.
  * 
  * Jonathan Miller Kauffman
 */
@@ -36,7 +36,8 @@ public class ReadClassesAddAnnotations
             {        
                 rt = Runtime.getRuntime();
                 String[] envp = new String[1];
-                envp[0] = "CLASSPATH=" + System.getProperty("java.class.path");
+                envp[0] = "CLASSPATH=" +
+                    System.getProperty("java.class.path");
 
                 // run AnnotationAdder
                 proc = rt.exec("java proteja.AnnotationAdderASM " +
@@ -48,7 +49,8 @@ public class ReadClassesAddAnnotations
                 while((line = buf_reader.readLine()) != null)
                     System.out.println(line);
     
-                reader2 = new InputStreamReader(proc.getErrorStream());
+                reader2 = new InputStreamReader(
+                    proc.getErrorStream());
                 buf_reader2 = new BufferedReader(reader2);
     
                 String line2;

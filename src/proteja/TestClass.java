@@ -11,7 +11,8 @@ import java.util.ArrayList;
 
 public class TestClass
 {
-    private ArrayList<Method> beforeMethods,  afterMethods,  testMethods;
+    private ArrayList<Method> beforeMethods, afterMethods,
+        testMethods;
 
     public TestClass()
     {

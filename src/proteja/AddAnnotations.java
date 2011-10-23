@@ -12,8 +12,10 @@ import java.io.*;
 
 public class AddAnnotations extends MethodAdapter
 {
-    private String mName; // the name of the current method
-    private boolean annotationPresent = false; // no annotation found as of yet
+    // the name of the current method
+    private String mName;
+    // no annotation found as of yet
+    private boolean annotationPresent = false;
 
     public AddAnnotations(MethodVisitor mv, String mName)
     {
@@ -23,7 +25,8 @@ public class AddAnnotations extends MethodAdapter
 
     // This method is only visited if there is an annotation.  
     // Therefore we can set our annotation flag to true.
-    public AnnotationVisitor visitAnnotation(String desc, boolean visible)
+    public AnnotationVisitor visitAnnotation(String desc,
+        boolean visible)
     {
         annotationPresent = true;
         AnnotationVisitor av = mv.visitAnnotation(desc,visible);
