@@ -1,6 +1,5 @@
-<protect.Settings>
+<proteja.Settings>
   <testClasses>
-
     <java-class>net.sourceforge.barbecue.linear.code39.Code39BarcodeTest</java-class>
     <java-class>net.sourceforge.barbecue.BarcodeTest</java-class>
     <java-class>net.sourceforge.barbecue.linear.ean.UCCEAN128BarcodeTest</java-class>
@@ -25,4 +24,4 @@
   <resetJVMOnBatch>true</resetJVMOnBatch>
   <coverageType>line</coverageType>
   <listType>ignore</listType>
-</protect.Settings>
+</proteja.Settings>

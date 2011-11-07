@@ -1,4 +1,4 @@
-<protect.Settings>
+<proteja.Settings>
   <testClasses>
     <java-class>org.apache.commons.math.ode.FirstOrderConverterTest</java-class>
     <java-class>org.apache.commons.math.geometry.Vector3DTest</java-class>
@@ -16,4 +16,4 @@
   <resetJVMOnBatch>true</resetJVMOnBatch>
   <coverageType>line</coverageType>
   <listType>ignore</listType>
-</protect.Settings>
+</proteja.Settings>

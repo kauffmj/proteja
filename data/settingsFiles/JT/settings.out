@@ -1,4 +1,4 @@
-<protect.Settings>
+<proteja.Settings>
   <testClasses>
     <java-class>org.joda.time.DateMidnightTest</java-class>
     <java-class>org.joda.time.DateTimeComparatorTest</java-class>
@@ -30,4 +30,4 @@
   <resetJVMOnBatch>true</resetJVMOnBatch>
   <coverageType>line</coverageType>
   <listType>ignore</listType>
-</protect.Settings>
+</proteja.Settings>

@@ -8,7 +8,7 @@
 	  change these locations, modify these properties in 'proteja.xml' and set them on the command line when
 	  running the proteja ant task. -->
      <property name="userSource" value="apps/EP/src/classMutants/Employee/" />
-     <property name="userBytecode" value="apps/EP/bin/classMutants/Employee/" />
+     <property name="userBytecode" value="apps/EP/bin/" />
      <property name="testSuite" value="apps/EP/bin/" />
 
      <property name="src" value="src/"/>
@@ -24,7 +24,7 @@
      <property name="modificationFile" value="data.dat" />
 
      <!-- Classpath setting needed to run proteja in any configuration. -->
-     <property name="classpath" value="./build/classes/:./${testSuite}:./${userBytecode}:./lib/junit-4.6.jar:./lib/ant.jar:./lib/ant-launcher.jar:./lib/asm-3.0.jar:./lib/asm-tree-3.0.jar:./lib/cobertura.jar:./lib/commons-beanutils-1.8.0.jar:./lib/commons-digester-2.0.jar:./lib/commons-logging-1.1.1.jar:./lib/jakarta-oro-2.0.8.jar:./lib/log4j-1.2.9.jar:./lib/xpp3-1.1.3.4d_b4_min.jar:./lib/xstream-1.1.3.jar:." />
+     <property name="classpath" value="./${build}:./${testSuite}:./${userBytecode}:./lib/junit-4.6.jar:./lib/ant.jar:./lib/ant-launcher.jar:./lib/asm-3.0.jar:./lib/asm-tree-3.0.jar:./lib/cobertura.jar:./lib/commons-beanutils-1.8.0.jar:./lib/commons-digester-2.0.jar:./lib/commons-logging-1.1.1.jar:./lib/jakarta-oro-2.0.8.jar:./lib/log4j-1.2.9.jar:./lib/xpp3-1.1.3.4d_b4_min.jar:./lib/xstream-1.1.3.jar:." />
 
      <!-- Runs proteja with the cobertura and testTimer commmand-line args. -->
      <target name="proteja">
@@ -133,6 +133,9 @@
         <arg value="${resetJVMOnBatch}" />
         <arg value="${applicationName}" />
         <classpath refid="run.classpath" />
+               <classpath>
+                    <pathelement path="${classpath}"></pathelement>
+               </classpath>
     <!--
          <jvmarg value="${properties}" />
     -->
@@ -160,7 +163,7 @@
         <fileset dir="${userBytecode}">
           <include name="**/*.class"/>
           <include name="**/*.jar" />
-          <include name="**/*Test.class" />
+          <exclude name="**/*Test.class" />
         </fileset>
       </cobertura-instrument>
     </target>
@@ -176,8 +179,12 @@
       <cobertura-report format="xml" datafile="temp/${groupNumber}.ser" destdir="coverageReports/" >
         <fileset dir="${userSource}">
           <include name="**/*.java" />
+          <exclude name="**/*Test.class" />
         </fileset>
         <classpath refid="cobertura.classpath" />
+               <classpath>
+                    <pathelement path="${classpath}"></pathelement>
+               </classpath>
       </cobertura-report>
       <move file="coverageReports/coverage.xml" tofile="coverageReports/${groupNumber}.xml" />
     </target>
@@ -197,6 +204,9 @@
          <arg value="rules.xml" />
          <arg value="${numberOfGroups}" />
          <classpath refid="run.classpath" />
+               <classpath>
+                    <pathelement path="${classpath}"></pathelement>
+               </classpath>
       </java>
     </target>
 
@@ -215,6 +225,9 @@
         <arg value="${resetJVMOnBatch}" />
         <arg value="${applicationName}" />
         <classpath refid="run.classpath" />
+               <classpath>
+                    <pathelement path="${classpath}"></pathelement>
+               </classpath>
       </java>
     </target>
 

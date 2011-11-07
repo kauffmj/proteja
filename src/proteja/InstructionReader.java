@@ -20,6 +20,7 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Writer;
+import net.sourceforge.cobertura.coveragedata.HasBeenInstrumented;
 
 public class InstructionReader
 {

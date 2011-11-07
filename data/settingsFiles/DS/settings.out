@@ -1,4 +1,4 @@
-<protect.Settings>
+<proteja.Settings>
   <testClasses>
     <java-class>dataStructures.TestIdentifier</java-class>
     <java-class>dataStructures.TestIdentifierTable</java-class>
@@ -17,4 +17,4 @@
   <resetJVMOnBatch>true</resetJVMOnBatch>
   <coverageType>line</coverageType>
   <listType>ignore</listType>
-</protect.Settings>
+</proteja.Settings>

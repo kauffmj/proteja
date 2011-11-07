@@ -1,4 +1,4 @@
-<protect.Settings>
+<proteja.Settings>
   <testClasses>
     <java-class>jdepend.framework.ClassFileParserTest</java-class>
     <java-class>jdepend.framework.CollectAllCyclesTest</java-class>
@@ -16,4 +16,4 @@
   <resetJVMOnBatch>true</resetJVMOnBatch>
   <coverageType>line</coverageType>
   <listType>ignore</listType>
-</protect.Settings>
+</proteja.Settings>

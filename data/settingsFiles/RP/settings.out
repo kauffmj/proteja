@@ -1,12 +1,11 @@
-<protect.Settings>
+<proteja.Settings>
   <testClasses>
     <java-class>redupr.TestReduceUsingDelayedGreedy</java-class>
     <java-class>redupr.TestReduceUsingGreedy</java-class>
     <java-class>redupr.TestReduceUsingHarroldGuptaSoffa</java-class>
-    <java-class>redupr.TestSetCover</java-class>
   </testClasses>
   <batchFactor>1</batchFactor>
   <resetJVMOnBatch>true</resetJVMOnBatch>
   <coverageType>line</coverageType>
   <listType>ignore</listType>
-</protect.Settings>
+</proteja.Settings>

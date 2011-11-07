@@ -1,4 +1,4 @@
-<protect.Settings>
+<proteja.Settings>
   <testClasses>
     <java-class>sudoku.TestSudoku</java-class>
   </testClasses>
@@ -6,4 +6,4 @@
   <resetJVMOnBatch>true</resetJVMOnBatch>
   <coverageType>line</coverageType>
   <listType>ignore</listType>
-</protect.Settings>
+</proteja.Settings>
