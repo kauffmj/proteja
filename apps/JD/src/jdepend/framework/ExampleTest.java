@@ -31,7 +31,7 @@ public class ExampleTest extends TestCase {
 
     protected void setUp() throws IOException {
 
-        jdependHomeDirectory = "/home/jonathan/research/protect2/protect/protect_protect/Protect2/testStuff/CaseStudyApplications/JD";
+        jdependHomeDirectory = "apps/JD";
         if (jdependHomeDirectory == null) {
             fail("Property 'jdepend.home' not defined");
         }

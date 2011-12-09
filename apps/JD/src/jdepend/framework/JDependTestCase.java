@@ -25,12 +25,12 @@ public class JDependTestCase extends TestCase {
 
     protected void setUp() {
 
-        homeDir = "/home/jonathan/research/protect2/protect/protect_protect/Protect2/testStuff/CaseStudyApplications/JD";//System.getProperty("jdependhome");
+        homeDir = "apps/JD";//System.getProperty("jdependhome");
         if (homeDir == null) {
             fail("Property 'jdepend.home' not defined");
         }
         homeDir = homeDir + File.separator;
-        testDir = homeDir + File.separator + "test" + File.separator;
+        testDir = homeDir + File.separator;
         testDataDir = testDir + "data" + File.separator;
         buildDir = homeDir + "bin" + File.separator;
         packageSubDir = "jdepend" + File.separator + 
