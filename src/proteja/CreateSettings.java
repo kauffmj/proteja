@@ -22,7 +22,7 @@ public class CreateSettings
         testClasses.add(proteja.Setup.class);
         set.setTestClasses(testClasses);
         set.setResetJVMOnBatch(true);
-        storeSettings(set, "settings.out");
+        storeSettings(set, "protejaConfig.xml");
     }
 
     /**

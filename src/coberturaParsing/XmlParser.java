@@ -26,7 +26,7 @@ public class XmlParser
 
     public static void main(String[] args)
     {
-        String settingsFilename = "settings.out";
+        String settingsFilename = "protejaConfig.xml";
 
         /**
          * Setup apache digester and parse the xml file passed as

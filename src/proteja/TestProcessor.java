@@ -40,7 +40,7 @@ public class TestProcessor
             testTimer=true;
         applicationName = args[2];
 
-        set = readSettings("settings.out");
+        set = readSettings("protejaConfig.xml");
         System.out.println("Settings in.");
 
         ArrayList<InstructionBlock> runList = createRunList();
@@ -186,7 +186,7 @@ public class TestProcessor
 
     /**
      * This method handles any exclusions or ordering asked for in
-     * settings.out.
+     * protejaConfig.xml.
      *
      * Modified by Jonathan Miller Kauffman.
      *

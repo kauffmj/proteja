@@ -15,7 +15,7 @@ public class ConstructMatrix
     public static void main(String[] args)
     {
         int[][] coverageMatrix;
-        String settingsFile = "settings.out";
+        String settingsFile = "protejaConfig.xml";
         String arrayFile = "coverageReports/";
         String matrixFileName = "coverageReports/" + args[4] + "_" +
             args[1] + "_" + args[2] + "_" + args[3] + "_Coverage.dat";
@@ -155,7 +155,7 @@ public class ConstructMatrix
     }
 
     /**
-     * Reads the settings.out file from the disk.
+     * Reads the protejaConfig.xml file from the disk.
      */
     public static proteja.Settings setRetrieveFromXML(String name) 
         throws IOException

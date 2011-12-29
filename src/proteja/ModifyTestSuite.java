@@ -1,7 +1,7 @@
 /**
  * ModifyTestSuite.java
  * 
- * Reads the modified test case list and modifies the settings.out
+ * Reads the modified test case list and modifies the protejaConfig.xml
  * file so the test suite executes according to the modification.
  * 
  * Jonathan Miller Kauffman
@@ -24,7 +24,7 @@ public class ModifyTestSuite
     public static void main(String[] args)
     {
         // read in the settings
-        Settings set = TestProcessor.readSettings("settings.out");
+        Settings set = TestProcessor.readSettings("protejaConfig.xml");
           System.out.println("Settings in.");
 
         FileReader fileIn = null;
@@ -65,6 +65,6 @@ public class ModifyTestSuite
         set.setMethodList(list);
         set.setListType("include");
 
-        CreateSettings.storeSettings(set, "settings.out");
+        CreateSettings.storeSettings(set, "protejaConfig.xml");
     }
 }

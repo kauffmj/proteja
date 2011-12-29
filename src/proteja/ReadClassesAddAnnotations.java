@@ -1,7 +1,7 @@
 /**
  * ReadClassesAddAnnotations.java
  * 
- * Reads the list of classes from settings.out and adds JUnit
+ * Reads the list of classes from protejaConfig.xml and adds JUnit
  * annotations to each of them using AnnotationAdderASM.
  * 
  * Jonathan Miller Kauffman
@@ -21,7 +21,7 @@ public class ReadClassesAddAnnotations
     public static void main(String[] args)
     {
         // read in the settings
-        Settings set = TestProcessor.readSettings("settings.out");
+        Settings set = TestProcessor.readSettings("protejaConfig.xml");
           System.out.println("Settings in.");
         
         // go through each class
