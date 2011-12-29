@@ -56,10 +56,10 @@ in order to delete the build directory and its contents.
 
 CONFIGURATION
 
-Proteja uses two configuration files: build.xml and settings.out.
+Proteja uses two configuration files: build.xml and protejaConfig.xml.
 Information about how to modify these files is discussed next.
 
-1) settings.out
+1) protejaConfig.xml
 
 This is an XML file that represents an object of the Java class called
 Settings.  Each field in this object represents an input parameter to
@@ -121,14 +121,14 @@ e) methodList - This is a list of test cases in your test suite.  How
                 where the project is "fake.test", the test class is
                 "ExampleTest", and the test case is "testFake".
 
-The settings.out file is essential for running Proteja.  Use great
+The protejaConfig.xml file is essential for running Proteja.  Use great
 care when you are making changes to this file.  If you corrupt or
-delete settings.out, then you can create a new file by typing
+delete protejaConfig.xml, then you can create a new file by typing
 
 ant createSettings
 
 while in the main directory of Proteja.  Since this task is configured
-to create a settings.out file that does not run any test suite, you
+to create a protejaConfig.xml file that does not run any test suite, you
 will need to modify the new file to work with your application.
 
 2) build.xml
@@ -141,20 +141,20 @@ and the application that you wish to test is located in the
 "/apps/foo/" directory, each of the first three properties must begin
 with "../../apps/foo/".
 
-a) userSource - This is the location of the source code of the program
-                being tested.  Cobertura uses this information when
-                generating coverage reports in order to map line
-                numbers to actual lines in the program.
+a) programSource - This is the location of the source code of the program
+                   being tested.  Cobertura uses this information when
+                   generating coverage reports in order to map line
+                   numbers to actual lines in the program.
 
-b) userBytecode - The location of the bytecode for the program being
-                  tested.  Cobertura instruments these classes in
-                  order to determine which parts of the program are
-                  executed by a test case.
+b) programBytecode - The location of the bytecode for the program being
+                     tested.  Cobertura instruments these classes in
+                     order to determine which parts of the program are
+                     executed by a test case.
 
-c) testSuite - The locations of the bytecode for your test suite.
-               Proteja runs the test suite and uses Cobertura in order
-               to determine which parts of the program the test suite
-               executes.
+c) testSuiteBytecode - The locations of the bytecode for your test suite.
+                       Proteja runs the test suite and uses Cobertura in order
+                       to determine which parts of the program the test suite
+                       executes.
 
 d) cobertura - If set to "true", Proteja will run Cobertura and
                collect coverage information while running the test
@@ -185,16 +185,16 @@ coverage information and generating reports, and will likely yield
 confusing results when used out of context.
 
 All of the properties in build.xml can be set via the command line.
-For example, in order to set userSource through the command line, type
+For example, in order to set programSource through the command line, type
 
-ant proteja -DuserSource=desiredPath
+ant proteja -DprogramSource=desiredPath
 
 where "desiredPath" is the desired setting of this property.  If you
 will be executing the test suite frequently, then it is probably best
-to make a copy of this file, as well as the settings.out file, that
+to make a copy of this file, as well as the protejaConfig.xml file, that
 contains the settings for that particular application.
 
-Once the build.xml and settings.out files are properly configured, you
+Once the build.xml and protejaConfig.xml files are properly configured, you
 are ready to use Proteja.
 
 COLLECTING COVERAGE INFORMATION
@@ -277,7 +277,7 @@ or prioritization, type
 
 ant modifyTestSuite -DmodificationFile=fileName
 
-This will modify the methodList in the settings.out file to contain
+This will modify the methodList in the protejaConfig.xml file to contain
 the test cases in "fileName" in the order in which they are listed.
 You can then run the test suite by typing
 
@@ -305,7 +305,7 @@ in order to compile all of the source code into bytecode.  For Sudoku
 and all of the other applications, a listing of the commands needed to
 compile the source code is provided in a README file.
 
-Second, you need to modify the build.xml and settings.out files.
+Second, you need to modify the build.xml and protejaConfig.xml files.
 These files have already been pre-configured for all of the
 applications provided with Proteja.  They are located in the
 "data/settingsFiles" directory, with a subdirectory for each
