@@ -20,6 +20,8 @@
      <property name="testTimer" value="false" />
      <!-- The name of the application being run. -->
      <property name="applicationName" value="default" />
+	 <!-- The filename of the matrix to be compressed or decompressed. -->
+	 <property name="matrixFile" value="matrix.dat" />
      <!-- The name of the file holding a list of test cases to run. -->
      <property name="modificationFile" value="data.dat" />
 
@@ -63,6 +65,28 @@
      <target name="modifyTestSuite">
           <java classname="proteja.ModifyTestSuite" fork="true">
                <arg value="${modificationFile}" />
+               <classpath>
+                    <pathelement path="${classpath}"></pathelement>
+               </classpath>
+          </java>
+     </target>
+
+     <!-- Compresses a coverage matrix. -->
+     <target name="compressMatrix">
+          <java classname="proteja.CompressMatrix" fork="true">
+               <arg value="${matrixFile}" />
+               <arg value="${summaryInfo}" />
+               <classpath>
+                    <pathelement path="${classpath}"></pathelement>
+               </classpath>
+          </java>
+     </target>
+
+     <!-- Deompresses a coverage matrix. -->
+     <target name="decompressMatrix">
+          <java classname="proteja.DecompressMatrix" fork="true">
+               <arg value="${matrixFile}" />
+               <arg value="${summaryInfo}" />
                <classpath>
                     <pathelement path="${classpath}"></pathelement>
                </classpath>

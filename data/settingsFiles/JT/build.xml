@@ -22,6 +22,10 @@
      <property name="applicationName" value="default" />
      <!-- The name of the file holding a list of test cases to run. -->
      <property name="modificationFile" value="data.dat" />
+	 <!-- The filename of the matrix to be compressed or decompressed. -->
+	 <property name="matrixFile" value="matrix.dat" />
+	 <!-- Indicates whether there is a summary row and column. -->
+	 <property name="summaryInfo" value="true" />
 
      <!-- Classpath setting needed to run proteja in any configuration. -->
      <property name="classpath" value="./${build}:./${testSuiteBytecode}:./${programBytecode}:./lib/junit-4.6.jar:./lib/ant.jar:./lib/ant-launcher.jar:./lib/asm-3.0.jar:./lib/asm-tree-3.0.jar:./lib/cobertura.jar:./lib/commons-beanutils-1.8.0.jar:./lib/commons-digester-2.0.jar:./lib/commons-logging-1.1.1.jar:./lib/jakarta-oro-2.0.8.jar:./lib/log4j-1.2.9.jar:./lib/xpp3-1.1.3.4d_b4_min.jar:./lib/xstream-1.1.3.jar:." />
@@ -63,6 +67,28 @@
      <target name="modifyTestSuite">
           <java classname="proteja.ModifyTestSuite" fork="true">
                <arg value="${modificationFile}" />
+               <classpath>
+                    <pathelement path="${classpath}"></pathelement>
+               </classpath>
+          </java>
+     </target>
+
+     <!-- Compresses a coverage matrix. -->
+     <target name="compressMatrix">
+          <java classname="proteja.CompressMatrix" fork="true">
+               <arg value="${matrixFile}" />
+               <arg value="${summaryInfo}" />
+               <classpath>
+                    <pathelement path="${classpath}"></pathelement>
+               </classpath>
+          </java>
+     </target>
+
+     <!-- Deompresses a coverage matrix. -->
+     <target name="decompressMatrix">
+          <java classname="proteja.DecompressMatrix" fork="true">
+               <arg value="${matrixFile}" />
+               <arg value="${summaryInfo}" />
                <classpath>
                     <pathelement path="${classpath}"></pathelement>
                </classpath>
